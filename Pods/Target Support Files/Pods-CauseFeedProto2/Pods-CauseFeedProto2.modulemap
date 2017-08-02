@@ -1,0 +1,6 @@
+framework module Pods_CauseFeedProto2 {
+  umbrella header "Pods-CauseFeedProto2-umbrella.h"
+
+  export *
+  module * { export * }
+}
