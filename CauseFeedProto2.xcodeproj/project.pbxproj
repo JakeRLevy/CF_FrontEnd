@@ -264,7 +264,7 @@
 					B12C18D81F326B38003B5370 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = SJQF99MAXG;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 					B12C18EE1F326B39003B5370 = {
 						CreatedOnToolsVersion = 8.3.3;
@@ -631,11 +631,14 @@
 			baseConfigurationReference = 965BFD215CA57A294889D290 /* Pods-CauseFeedProto2.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = SJQF99MAXG;
 				INFOPLIST_FILE = CauseFeedProto2/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.heavymtlhippy.CauseFeedProto2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.beefcarcass.levy.jake;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "c1bcca45-bdc9-44e6-bc87-76469ef642fc";
+				PROVISIONING_PROFILE_SPECIFIER = "Beef Sauce";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -645,11 +648,14 @@
 			baseConfigurationReference = 9A81A923E5B910A2646432AB /* Pods-CauseFeedProto2.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = SJQF99MAXG;
 				INFOPLIST_FILE = CauseFeedProto2/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.heavymtlhippy.CauseFeedProto2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.beefcarcass.levy.jake;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "c1bcca45-bdc9-44e6-bc87-76469ef642fc";
+				PROVISIONING_PROFILE_SPECIFIER = "Beef Sauce";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
