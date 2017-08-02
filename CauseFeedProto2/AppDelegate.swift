@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  CauseFeedProto2
 //
-//  Created by Jacob Levy on 8/2/17.
+//  Created by Jacob Levy on 6/8/17.
 //  Copyright © 2017 Jacob Levy. All rights reserved.
 //
 
@@ -13,10 +13,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	var window: UIWindow?
 
-
+	let myGreenBG = UIColor(colorLiteralRed: 43/255.0, green: 111/255.0, blue: 109/255.0, alpha: 1.0)
+	
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 		// Override point for customization after application launch.
+		
+		
+		UITabBar.appearance().backgroundColor = myGreenBG
+		UITabBarItem.appearance().badgeColor = UIColor.red
+		
 		return true
+		
 	}
 
 	func applicationWillResignActive(_ application: UIApplication) {

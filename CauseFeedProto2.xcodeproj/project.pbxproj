@@ -15,6 +15,12 @@
 		B12C18E91F326B39003B5370 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B12C18E71F326B39003B5370 /* LaunchScreen.storyboard */; };
 		B12C18F41F326B39003B5370 /* CauseFeedProto2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12C18F31F326B39003B5370 /* CauseFeedProto2Tests.swift */; };
 		B12C18FF1F326B39003B5370 /* CauseFeedProto2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12C18FE1F326B39003B5370 /* CauseFeedProto2UITests.swift */; };
+		B12C19121F326CAF003B5370 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12C190C1F326CAF003B5370 /* LoginViewController.swift */; };
+		B12C19131F326CAF003B5370 /* MyScroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12C190D1F326CAF003B5370 /* MyScroll.swift */; };
+		B12C19141F326CAF003B5370 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12C190E1F326CAF003B5370 /* SignInViewController.swift */; };
+		B12C19151F326CAF003B5370 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12C190F1F326CAF003B5370 /* SignUpViewController.swift */; };
+		B12C19161F326CAF003B5370 /* tabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12C19101F326CAF003B5370 /* tabBarViewController.swift */; };
+		B12C19171F326CAF003B5370 /* XfadeSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12C19111F326CAF003B5370 /* XfadeSegue.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +55,12 @@
 		B12C18FA1F326B39003B5370 /* CauseFeedProto2UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CauseFeedProto2UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B12C18FE1F326B39003B5370 /* CauseFeedProto2UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CauseFeedProto2UITests.swift; sourceTree = "<group>"; };
 		B12C19001F326B39003B5370 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B12C190C1F326CAF003B5370 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		B12C190D1F326CAF003B5370 /* MyScroll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyScroll.swift; sourceTree = "<group>"; };
+		B12C190E1F326CAF003B5370 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		B12C190F1F326CAF003B5370 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		B12C19101F326CAF003B5370 /* tabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tabBarViewController.swift; sourceTree = "<group>"; };
+		B12C19111F326CAF003B5370 /* XfadeSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XfadeSegue.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +113,12 @@
 			children = (
 				B12C18DC1F326B38003B5370 /* AppDelegate.swift */,
 				B12C18DE1F326B38003B5370 /* FirstViewController.swift */,
+				B12C190C1F326CAF003B5370 /* LoginViewController.swift */,
+				B12C190D1F326CAF003B5370 /* MyScroll.swift */,
+				B12C190E1F326CAF003B5370 /* SignInViewController.swift */,
+				B12C190F1F326CAF003B5370 /* SignUpViewController.swift */,
+				B12C19101F326CAF003B5370 /* tabBarViewController.swift */,
+				B12C19111F326CAF003B5370 /* XfadeSegue.swift */,
 				B12C18E01F326B38003B5370 /* SecondViewController.swift */,
 				B12C18E21F326B39003B5370 /* Main.storyboard */,
 				B12C18E51F326B39003B5370 /* Assets.xcassets */,
@@ -265,8 +283,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B12C19161F326CAF003B5370 /* tabBarViewController.swift in Sources */,
+				B12C19121F326CAF003B5370 /* LoginViewController.swift in Sources */,
+				B12C19151F326CAF003B5370 /* SignUpViewController.swift in Sources */,
 				B12C18E11F326B38003B5370 /* SecondViewController.swift in Sources */,
+				B12C19141F326CAF003B5370 /* SignInViewController.swift in Sources */,
 				B12C18DD1F326B38003B5370 /* AppDelegate.swift in Sources */,
+				B12C19171F326CAF003B5370 /* XfadeSegue.swift in Sources */,
+				B12C19131F326CAF003B5370 /* MyScroll.swift in Sources */,
 				B12C18DF1F326B38003B5370 /* FirstViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -518,6 +542,7 @@
 				B12C19051F326B39003B5370 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B12C19061F326B39003B5370 /* Build configuration list for PBXNativeTarget "CauseFeedProto2Tests" */ = {
 			isa = XCConfigurationList;
@@ -526,6 +551,7 @@
 				B12C19081F326B39003B5370 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B12C19091F326B39003B5370 /* Build configuration list for PBXNativeTarget "CauseFeedProto2UITests" */ = {
 			isa = XCConfigurationList;
@@ -534,6 +560,7 @@
 				B12C190B1F326B39003B5370 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
