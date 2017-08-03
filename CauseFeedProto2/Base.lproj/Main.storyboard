@@ -56,7 +56,7 @@
                             <constraint firstAttribute="centerY" secondItem="KQZ-1w-vlD" secondAttribute="centerY" id="exm-UA-ej4"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="HomeBase" selectedImage="HomeBase" id="acW-dT-cKf">
+                    <tabBarItem key="tabBarItem" tag="1" title="" image="HomeBase" selectedImage="HomeBase" id="acW-dT-cKf">
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
                                 <color key="value" red="0.93571428571428572" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -93,7 +93,7 @@
                             <constraint firstItem="6Yz-P0-etn" firstAttribute="leading" secondItem="YvS-g9-jJd" secondAttribute="leadingMargin" constant="17" id="iSQ-Ar-je5"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="HeartHome" selectedImage="HeartHome" id="WOI-OJ-hXA"/>
+                    <tabBarItem key="tabBarItem" tag="3" title="" image="HeartHome" selectedImage="HeartHome" id="WOI-OJ-hXA"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m4M-Da-ncH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -124,7 +124,13 @@
                             <constraint firstItem="fnj-Ro-5Ex" firstAttribute="top" secondItem="kfT-aJ-B5v" secondAttribute="bottom" constant="229" id="gsP-An-5PB"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="user" selectedImage="user" id="rkF-3Z-ox1"/>
+                    <tabBarItem key="tabBarItem" tag="4" title="" image="user" selectedImage="user" id="rkF-3Z-ox1">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                <color key="value" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </tabBarItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sbk-5T-Heb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -381,7 +387,7 @@ character @ $ # ! % * ? &amp;</string>
                             <constraint firstAttribute="centerY" secondItem="zEq-FU-wV5" secondAttribute="centerY" id="qzY-Ky-pLD"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="SearchHome" selectedImage="SearchHome" id="cPa-gy-q4n">
+                    <tabBarItem key="tabBarItem" tag="2" title="" image="SearchHome" selectedImage="SearchHome" id="cPa-gy-q4n">
                         <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
                     </tabBarItem>
@@ -455,6 +461,11 @@ character @ $ # ! % * ? &amp;</string>
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                <color key="value" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </tabBar>
                     <connections>
                         <segue destination="9pv-A4-QxB" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
@@ -476,11 +487,11 @@ character @ $ # ! % * ? &amp;</string>
                         <viewControllerLayoutGuide type="bottom" id="gEV-1g-ebw"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="QIr-Zr-A39">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="342" height="305"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="swf-gq-wTl" userLabel="SIScroll" customClass="MyScroll" customModule="CauseFeedProto2" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="0.0" width="342" height="305"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Line" translatesAutoresizingMaskIntoConstraints="NO" id="kEn-Ie-GNJ" userLabel="ULine">
                                         <rect key="frame" x="19" y="198" width="152" height="1"/>
@@ -510,10 +521,10 @@ character @ $ # ! % * ? &amp;</string>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="googPlaceHolder" translatesAutoresizingMaskIntoConstraints="NO" id="QXd-Pd-unp" userLabel="GoogPH">
-                                        <rect key="frame" x="104.5" y="115" width="165" height="30"/>
+                                        <rect key="frame" x="88" y="115" width="165" height="30"/>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FBPlaceHolder" translatesAutoresizingMaskIntoConstraints="NO" id="9rS-CC-NHS">
-                                        <rect key="frame" x="104.5" y="45" width="165" height="30"/>
+                                        <rect key="frame" x="88" y="45" width="165" height="30"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New to Causefeed?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jDa-my-ORn">
                                         <rect key="frame" x="0.0" y="1" width="151" height="20"/>
@@ -542,20 +553,20 @@ character @ $ # ! % * ? &amp;</string>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TwitPlaceHolder" translatesAutoresizingMaskIntoConstraints="NO" id="law-nE-oFG">
-                                        <rect key="frame" x="104.5" y="80" width="165" height="30"/>
+                                        <rect key="frame" x="88" y="80" width="165" height="30"/>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Line" translatesAutoresizingMaskIntoConstraints="NO" id="Asp-wM-MH3">
                                         <rect key="frame" x="19" y="235" width="152" height="1"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BJc-Rl-DiA">
-                                        <rect key="frame" x="141.5" y="269" width="91" height="32"/>
+                                        <rect key="frame" x="125" y="269" width="91" height="32"/>
                                         <state key="normal" backgroundImage="signInButton"/>
                                         <connections>
                                             <segue destination="eQ2-3k-eV0" kind="custom" identifier="SI2SU" customClass="XfadeSegue" customModule="CauseFeedProto2" customModuleProvider="target" id="OJh-2u-qad"/>
                                         </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="OrLine" translatesAutoresizingMaskIntoConstraints="NO" id="9XG-VQ-JB8" userLabel="OrLine">
-                                        <rect key="frame" x="19" y="153" width="336" height="10"/>
+                                        <rect key="frame" x="19" y="153" width="303" height="10"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="10" id="sU0-g6-TLi"/>
                                         </constraints>

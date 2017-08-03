@@ -13,12 +13,16 @@ class tabBarViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+		//self.tabBar.delegate = self
 		
 		//Code to render the unselected images in the tab bar
 		for items in 0 ..< tabBar.items!.count {
 			let tabItemIndex = tabBar.items![items]
 			tabItemIndex.image = tabItemIndex.image!.withRenderingMode(UIImageRenderingMode.alwaysOriginal)
-			
+			/*for tabBarItem in (self.tabBarController?.tabBar.items!)!{
+				if !(tabBarItem.
+				}
+			}*/
 		}
     }
 
@@ -26,7 +30,9 @@ class tabBarViewController: UITabBarController {
         super.didReceiveMemoryWarning()
     }
     
-
+	override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+		item.badgeColor = UIColor.red
+	}
     /*
     // MARK: - Navigation
 

@@ -22,7 +22,10 @@ class FirstViewController: UIViewController {
 		for tabBarItem in (self.tabBarController?.tabBar.items!)!{
 			tabBarItem.title = ""
 			tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0)
+			
 		}
+		
+		
 		
 	}
 	override func didReceiveMemoryWarning() {

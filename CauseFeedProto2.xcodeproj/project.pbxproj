@@ -23,6 +23,7 @@
 		B12C19151F326CAF003B5370 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12C190F1F326CAF003B5370 /* SignUpViewController.swift */; };
 		B12C19161F326CAF003B5370 /* tabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12C19101F326CAF003B5370 /* tabBarViewController.swift */; };
 		B12C19171F326CAF003B5370 /* XfadeSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12C19111F326CAF003B5370 /* XfadeSegue.swift */; };
+		B12C191B1F3370BA003B5370 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B12C191A1F3370BA003B5370 /* GoogleService-Info.plist */; };
 		B3BA5F93B2F678E86F714B82 /* Pods_CauseFeedProto2Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA3E07B5B56C6258DB55B5D1 /* Pods_CauseFeedProto2Tests.framework */; };
 /* End PBXBuildFile section */
 
@@ -70,6 +71,7 @@
 		B12C190F1F326CAF003B5370 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		B12C19101F326CAF003B5370 /* tabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tabBarViewController.swift; sourceTree = "<group>"; };
 		B12C19111F326CAF003B5370 /* XfadeSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XfadeSegue.swift; sourceTree = "<group>"; };
+		B12C191A1F3370BA003B5370 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BA3E07B5B56C6258DB55B5D1 /* Pods_CauseFeedProto2Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CauseFeedProto2Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFD65D2CA2CDFF78F51C7E7C /* Pods-CauseFeedProto2UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CauseFeedProto2UITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CauseFeedProto2UITests/Pods-CauseFeedProto2UITests.debug.xcconfig"; sourceTree = "<group>"; };
 		E8FD7D637DB4017F7055CE2F /* Pods-CauseFeedProto2UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CauseFeedProto2UITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CauseFeedProto2UITests/Pods-CauseFeedProto2UITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 		B12C18D01F326B38003B5370 = {
 			isa = PBXGroup;
 			children = (
+				B12C191A1F3370BA003B5370 /* GoogleService-Info.plist */,
 				B12C18DB1F326B38003B5370 /* CauseFeedProto2 */,
 				B12C18F21F326B39003B5370 /* CauseFeedProto2Tests */,
 				B12C18FD1F326B39003B5370 /* CauseFeedProto2UITests */,
@@ -306,6 +309,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B12C18E91F326B39003B5370 /* LaunchScreen.storyboard in Resources */,
+				B12C191B1F3370BA003B5370 /* GoogleService-Info.plist in Resources */,
 				B12C18E61F326B39003B5370 /* Assets.xcassets in Resources */,
 				B12C18E41F326B39003B5370 /* Main.storyboard in Resources */,
 			);
