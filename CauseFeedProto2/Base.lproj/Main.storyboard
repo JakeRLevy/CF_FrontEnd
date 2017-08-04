@@ -111,30 +111,45 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4th View" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fnj-Ro-5Ex">
-                                <rect key="frame" x="135" y="249" width="68" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Personal Profile Page" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fnj-Ro-5Ex">
+                                <rect key="frame" x="106" y="324" width="162" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="1Zz-Bu-irk">
+                                <rect key="frame" x="16" y="81" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="w5V-CO-7eh">
+                                    <size key="itemSize" width="240" height="130"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="saO-VY-vMe">
+                                        <rect key="frame" x="0.0" y="0.0" width="240" height="130"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="130"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="fnj-Ro-5Ex" firstAttribute="leading" secondItem="pZZ-jp-V5z" secondAttribute="leading" constant="135" id="YgM-oK-gkq"/>
-                            <constraint firstItem="fnj-Ro-5Ex" firstAttribute="top" secondItem="kfT-aJ-B5v" secondAttribute="bottom" constant="229" id="gsP-An-5PB"/>
+                            <constraint firstItem="fnj-Ro-5Ex" firstAttribute="centerX" secondItem="pZZ-jp-V5z" secondAttribute="centerX" id="FNH-dt-Wgw"/>
+                            <constraint firstItem="65R-p4-yNc" firstAttribute="top" secondItem="fnj-Ro-5Ex" secondAttribute="bottom" constant="273" id="QM5-Im-myr"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" tag="4" title="" image="user" selectedImage="user" id="rkF-3Z-ox1">
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
-                                <color key="value" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            </userDefinedRuntimeAttribute>
-                        </userDefinedRuntimeAttributes>
-                    </tabBarItem>
+                    <navigationItem key="navigationItem" id="Y2b-Hx-nU8"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sbk-5T-Heb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="750" y="1840"/>
+            <point key="canvasLocation" x="1688.8" y="1839.1304347826087"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="SDf-rH-bT1">
@@ -468,10 +483,10 @@ character @ $ # ! % * ? &amp;</string>
                         </userDefinedRuntimeAttributes>
                     </tabBar>
                     <connections>
+                        <segue destination="cLt-ZK-LLh" kind="relationship" relationship="viewControllers" id="rXx-UY-guD"/>
                         <segue destination="9pv-A4-QxB" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
                         <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
                         <segue destination="hcE-Kf-ZNt" kind="relationship" relationship="viewControllers" id="dfn-ts-NrT"/>
-                        <segue destination="sns-6r-FhE" kind="relationship" relationship="viewControllers" id="rXx-UY-guD"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
@@ -630,6 +645,31 @@ character @ $ # ! % * ? &amp;</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gOa-YE-yqz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1710.4000000000001" y="308.9955022488756"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="29o-gX-4u4">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="cLt-ZK-LLh" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" tag="4" title="" image="user" selectedImage="user" id="rkF-3Z-ox1">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                <color key="value" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </tabBarItem>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="bRv-Iw-ytU">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="sns-6r-FhE" kind="relationship" relationship="rootViewController" id="6Io-uG-ckN"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="p2s-4k-dZd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="749.60000000000002" y="1839.1304347826087"/>
         </scene>
     </scenes>
     <resources>

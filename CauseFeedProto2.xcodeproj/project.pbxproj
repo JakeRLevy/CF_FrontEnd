@@ -72,6 +72,7 @@
 		B12C19101F326CAF003B5370 /* tabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tabBarViewController.swift; sourceTree = "<group>"; };
 		B12C19111F326CAF003B5370 /* XfadeSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XfadeSegue.swift; sourceTree = "<group>"; };
 		B12C191A1F3370BA003B5370 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		B12C191C1F3404BB003B5370 /* CauseFeedProto2.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CauseFeedProto2.entitlements; sourceTree = "<group>"; };
 		BA3E07B5B56C6258DB55B5D1 /* Pods_CauseFeedProto2Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CauseFeedProto2Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFD65D2CA2CDFF78F51C7E7C /* Pods-CauseFeedProto2UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CauseFeedProto2UITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CauseFeedProto2UITests/Pods-CauseFeedProto2UITests.debug.xcconfig"; sourceTree = "<group>"; };
 		E8FD7D637DB4017F7055CE2F /* Pods-CauseFeedProto2UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CauseFeedProto2UITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CauseFeedProto2UITests/Pods-CauseFeedProto2UITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -141,6 +142,7 @@
 		B12C18DB1F326B38003B5370 /* CauseFeedProto2 */ = {
 			isa = PBXGroup;
 			children = (
+				B12C191C1F3404BB003B5370 /* CauseFeedProto2.entitlements */,
 				B12C18DC1F326B38003B5370 /* AppDelegate.swift */,
 				B12C18DE1F326B38003B5370 /* FirstViewController.swift */,
 				B12C190C1F326CAF003B5370 /* LoginViewController.swift */,
@@ -268,6 +270,11 @@
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = SJQF99MAXG;
 						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 					B12C18EE1F326B39003B5370 = {
 						CreatedOnToolsVersion = 8.3.3;
@@ -635,6 +642,7 @@
 			baseConfigurationReference = 965BFD215CA57A294889D290 /* Pods-CauseFeedProto2.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = CauseFeedProto2/CauseFeedProto2.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = SJQF99MAXG;
 				INFOPLIST_FILE = CauseFeedProto2/Info.plist;
@@ -652,6 +660,7 @@
 			baseConfigurationReference = 9A81A923E5B910A2646432AB /* Pods-CauseFeedProto2.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = CauseFeedProto2/CauseFeedProto2.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = SJQF99MAXG;
 				INFOPLIST_FILE = CauseFeedProto2/Info.plist;
