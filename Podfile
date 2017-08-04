@@ -6,7 +6,7 @@ target 'CauseFeedProto2' do
 	pod ‘Firebase/Core’
 	pod ‘Firebase/Auth’
 	pod ‘Firebase/Storage’
-	pod ‘KeychainAccess’
+	pod ‘SwiftKeychainWrapper’
 #frameworks
   use_frameworks!
  

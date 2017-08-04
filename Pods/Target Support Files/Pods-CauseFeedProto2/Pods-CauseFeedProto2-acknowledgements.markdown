@@ -437,11 +437,11 @@ Copyright 2017 Google
    limitations under the License.
 
 
-## KeychainAccess
+## SwiftKeychainWrapper
 
 The MIT License (MIT)
 
-Copyright (c) 2014 kishikawa katsumi
+Copyright (c) 2014 Jason Rendel
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
