@@ -9,7 +9,6 @@
 import UIKit
 
 class FirstViewController: UIViewController {
-	let myGreenBG = UIColor(colorLiteralRed: 43/255.0, green: 111/255.0, blue: 109/255.0, alpha: 1.0)
 
 	override func viewDidLoad() {
 		super.viewDidLoad()

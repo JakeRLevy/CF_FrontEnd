@@ -24,10 +24,7 @@ class LoginViewController: UIViewController {
 	}
 	}*/
     override func viewDidLoad() {
-		/*let loginButton = LoginButton(readPermissions: [ .PublicProfile ])
-		loginButton.center = view.center
 	
-		view.addSubview(loginButton)*/
 		logInIMG.image = UIImage(named: "met_office_body")
 		CFlogo.image = UIImage(named: "CauseFeedLogo")
 	

@@ -24,6 +24,8 @@
 		B12C19161F326CAF003B5370 /* tabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12C19101F326CAF003B5370 /* tabBarViewController.swift */; };
 		B12C19171F326CAF003B5370 /* XfadeSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12C19111F326CAF003B5370 /* XfadeSegue.swift */; };
 		B12C191B1F3370BA003B5370 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B12C191A1F3370BA003B5370 /* GoogleService-Info.plist */; };
+		B16924331F344DBA00B9973C /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16924321F344DBA00B9973C /* UserProfileViewController.swift */; };
+		B16924351F344E9C00B9973C /* CustomUserNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16924341F344E9C00B9973C /* CustomUserNavViewController.swift */; };
 		B3BA5F93B2F678E86F714B82 /* Pods_CauseFeedProto2Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA3E07B5B56C6258DB55B5D1 /* Pods_CauseFeedProto2Tests.framework */; };
 /* End PBXBuildFile section */
 
@@ -73,6 +75,8 @@
 		B12C19111F326CAF003B5370 /* XfadeSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XfadeSegue.swift; sourceTree = "<group>"; };
 		B12C191A1F3370BA003B5370 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B12C191C1F3404BB003B5370 /* CauseFeedProto2.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CauseFeedProto2.entitlements; sourceTree = "<group>"; };
+		B16924321F344DBA00B9973C /* UserProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
+		B16924341F344E9C00B9973C /* CustomUserNavViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomUserNavViewController.swift; sourceTree = "<group>"; };
 		BA3E07B5B56C6258DB55B5D1 /* Pods_CauseFeedProto2Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CauseFeedProto2Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFD65D2CA2CDFF78F51C7E7C /* Pods-CauseFeedProto2UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CauseFeedProto2UITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CauseFeedProto2UITests/Pods-CauseFeedProto2UITests.debug.xcconfig"; sourceTree = "<group>"; };
 		E8FD7D637DB4017F7055CE2F /* Pods-CauseFeedProto2UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CauseFeedProto2UITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CauseFeedProto2UITests/Pods-CauseFeedProto2UITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -152,7 +156,9 @@
 				B12C19101F326CAF003B5370 /* tabBarViewController.swift */,
 				B12C19111F326CAF003B5370 /* XfadeSegue.swift */,
 				B12C18E01F326B38003B5370 /* SecondViewController.swift */,
+				B16924321F344DBA00B9973C /* UserProfileViewController.swift */,
 				B12C18E21F326B39003B5370 /* Main.storyboard */,
+				B16924341F344E9C00B9973C /* CustomUserNavViewController.swift */,
 				B12C18E51F326B39003B5370 /* Assets.xcassets */,
 				B12C18E71F326B39003B5370 /* LaunchScreen.storyboard */,
 				B12C18EA1F326B39003B5370 /* Info.plist */,
@@ -481,7 +487,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B16924351F344E9C00B9973C /* CustomUserNavViewController.swift in Sources */,
 				B12C19161F326CAF003B5370 /* tabBarViewController.swift in Sources */,
+				B16924331F344DBA00B9973C /* UserProfileViewController.swift in Sources */,
 				B12C19121F326CAF003B5370 /* LoginViewController.swift in Sources */,
 				B12C19151F326CAF003B5370 /* SignUpViewController.swift in Sources */,
 				B12C18E11F326B38003B5370 /* SecondViewController.swift in Sources */,

@@ -1,38 +1,28 @@
-	//
-//  tabBarViewController.swift
+//
+//  CustomUserNavViewController.swift
 //  CauseFeedProto2
 //
-//  Created by Jacob Levy on 6/12/17.
+//  Created by Jacob Levy on 8/4/17.
 //  Copyright © 2017 Jacob Levy. All rights reserved.
 //
 
 import UIKit
+//free use gear image on storyboard downloaded from http://www.clipartbest.com/gear-png
+class CustomUserNavViewController: UINavigationController {
 
-class tabBarViewController: UITabBarController {
-
+	@IBOutlet weak var userProfItem: UITabBarItem!
     override func viewDidLoad() {
         super.viewDidLoad()
-
 		
-		//Code to render the unselected images in the tab bar
-
-		for items in 0 ..< tabBar.items!.count {
-			let tabItemIndex = tabBar.items![items]
-			tabItemIndex.image = tabItemIndex.image!.withRenderingMode(UIImageRenderingMode.alwaysOriginal)
-			/*for tabBarItem in (self.tabBarController?.tabBar.items!)!{
-				if !(tabBarItem.
-				}
-			}*/
-		}
+		
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
     
-	override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-		item.badgeColor = UIColor.red
-	}
+
     /*
     // MARK: - Navigation
 

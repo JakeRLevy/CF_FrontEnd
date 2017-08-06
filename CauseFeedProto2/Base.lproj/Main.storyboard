@@ -56,13 +56,7 @@
                             <constraint firstAttribute="centerY" secondItem="KQZ-1w-vlD" secondAttribute="centerY" id="exm-UA-ej4"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" tag="1" title="" image="HomeBase" selectedImage="HomeBase" id="acW-dT-cKf">
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
-                                <color key="value" red="0.93571428571428572" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            </userDefinedRuntimeAttribute>
-                        </userDefinedRuntimeAttributes>
-                    </tabBarItem>
+                    <tabBarItem key="tabBarItem" tag="1" title="" image="HomeBase" selectedImage="HomeBase" id="acW-dT-cKf"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
@@ -99,10 +93,10 @@
             </objects>
             <point key="canvasLocation" x="750" y="1161"/>
         </scene>
-        <!--View Controller-->
+        <!--User Profile View Controller-->
         <scene sceneID="jN5-6o-sSW">
             <objects>
-                <viewController id="sns-6r-FhE" sceneMemberID="viewController">
+                <viewController id="sns-6r-FhE" customClass="UserProfileViewController" customModule="CauseFeedProto2" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="kfT-aJ-B5v"/>
                         <viewControllerLayoutGuide type="bottom" id="65R-p4-yNc"/>
@@ -112,7 +106,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Personal Profile Page" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fnj-Ro-5Ex">
-                                <rect key="frame" x="106" y="324" width="162" height="21"/>
+                                <rect key="frame" x="106.5" y="373" width="162" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -145,7 +139,12 @@
                             <constraint firstItem="65R-p4-yNc" firstAttribute="top" secondItem="fnj-Ro-5Ex" secondAttribute="bottom" constant="273" id="QM5-Im-myr"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="Y2b-Hx-nU8"/>
+                    <navigationItem key="navigationItem" id="Y2b-Hx-nU8">
+                        <barButtonItem key="leftBarButtonItem" tag="1" title="TBD Button" width="61" id="D6F-hF-zXR"/>
+                        <barButtonItem key="rightBarButtonItem" tag="3" image="Gear" id="9gi-3M-wUT">
+                            <color key="tintColor" red="0.46039102980000002" green="0.46039102980000002" blue="0.46039102980000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sbk-5T-Heb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -171,7 +170,7 @@
                                         <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="18"/>
                                         <state key="normal" title="&lt;" backgroundImage="signInButton"/>
                                         <connections>
-                                            <segue destination="B1j-7F-TTz" kind="custom" customClass="XfadeSegue" customModule="CauseFeedProto2" customModuleProvider="target" id="Mso-hK-uHZ"/>
+                                            <segue destination="B1j-7F-TTz" kind="custom" identifier="SI2SU" customClass="XfadeSegue" customModule="CauseFeedProto2" customModuleProvider="target" id="Mso-hK-uHZ"/>
                                         </connections>
                                     </button>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zpP-Fj-3QJ">
@@ -217,7 +216,9 @@
                                         <state key="normal" backgroundImage="SignUpButton"/>
                                         <connections>
                                             <action selector="DidPressSignUp:" destination="eQ2-3k-eV0" eventType="touchUpInside" id="voc-Rw-f3O"/>
-                                            <segue destination="49e-Tb-3d3" kind="show" identifier="SU2First" id="Wn7-yV-9XG"/>
+                                            <segue destination="49e-Tb-3d3" kind="popoverPresentation" identifier="SU2First" popoverAnchorView="l7B-3P-xyn" id="Wn7-yV-9XG">
+                                                <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                            </segue>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="8" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ag0-33-5h8">
@@ -482,6 +483,11 @@ character @ $ # ! % * ? &amp;</string>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </tabBar>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                            <color key="value" red="0.16862745098039217" green="0.43529411764705883" blue="0.42745098039215684" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <segue destination="cLt-ZK-LLh" kind="relationship" relationship="viewControllers" id="rXx-UY-guD"/>
                         <segue destination="9pv-A4-QxB" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
@@ -502,11 +508,11 @@ character @ $ # ! % * ? &amp;</string>
                         <viewControllerLayoutGuide type="bottom" id="gEV-1g-ebw"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="QIr-Zr-A39">
-                        <rect key="frame" x="0.0" y="0.0" width="342" height="305"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="swf-gq-wTl" userLabel="SIScroll" customClass="MyScroll" customModule="CauseFeedProto2" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="342" height="305"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Line" translatesAutoresizingMaskIntoConstraints="NO" id="kEn-Ie-GNJ" userLabel="ULine">
                                         <rect key="frame" x="19" y="198" width="152" height="1"/>
@@ -536,10 +542,10 @@ character @ $ # ! % * ? &amp;</string>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="googPlaceHolder" translatesAutoresizingMaskIntoConstraints="NO" id="QXd-Pd-unp" userLabel="GoogPH">
-                                        <rect key="frame" x="88" y="115" width="165" height="30"/>
+                                        <rect key="frame" x="104.5" y="115" width="165" height="30"/>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FBPlaceHolder" translatesAutoresizingMaskIntoConstraints="NO" id="9rS-CC-NHS">
-                                        <rect key="frame" x="88" y="45" width="165" height="30"/>
+                                        <rect key="frame" x="104.5" y="45" width="165" height="30"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New to Causefeed?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jDa-my-ORn">
                                         <rect key="frame" x="0.0" y="1" width="151" height="20"/>
@@ -568,20 +574,22 @@ character @ $ # ! % * ? &amp;</string>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TwitPlaceHolder" translatesAutoresizingMaskIntoConstraints="NO" id="law-nE-oFG">
-                                        <rect key="frame" x="88" y="80" width="165" height="30"/>
+                                        <rect key="frame" x="104.5" y="80" width="165" height="30"/>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Line" translatesAutoresizingMaskIntoConstraints="NO" id="Asp-wM-MH3">
                                         <rect key="frame" x="19" y="235" width="152" height="1"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BJc-Rl-DiA">
-                                        <rect key="frame" x="125" y="269" width="91" height="32"/>
+                                        <rect key="frame" x="141.5" y="269" width="91" height="32"/>
                                         <state key="normal" backgroundImage="signInButton"/>
                                         <connections>
-                                            <segue destination="eQ2-3k-eV0" kind="custom" identifier="SI2SU" customClass="XfadeSegue" customModule="CauseFeedProto2" customModuleProvider="target" id="OJh-2u-qad"/>
+                                            <segue destination="49e-Tb-3d3" kind="popoverPresentation" identifier="SI2Home" popoverAnchorView="BJc-Rl-DiA" id="jmD-G2-ygw">
+                                                <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                            </segue>
                                         </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="OrLine" translatesAutoresizingMaskIntoConstraints="NO" id="9XG-VQ-JB8" userLabel="OrLine">
-                                        <rect key="frame" x="19" y="153" width="303" height="10"/>
+                                        <rect key="frame" x="19" y="153" width="336" height="10"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="10" id="sU0-g6-TLi"/>
                                         </constraints>
@@ -646,10 +654,10 @@ character @ $ # ! % * ? &amp;</string>
             </objects>
             <point key="canvasLocation" x="-1710.4000000000001" y="308.9955022488756"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Custom User Nav View Controller-->
         <scene sceneID="29o-gX-4u4">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="cLt-ZK-LLh" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="cLt-ZK-LLh" customClass="CustomUserNavViewController" customModule="CauseFeedProto2" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" tag="4" title="" image="user" selectedImage="user" id="rkF-3Z-ox1">
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
@@ -658,12 +666,14 @@ character @ $ # ! % * ? &amp;</string>
                         </userDefinedRuntimeAttributes>
                     </tabBarItem>
                     <toolbarItems/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="bRv-Iw-ytU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
+                        <outlet property="userProfItem" destination="rkF-3Z-ox1" id="0P4-KK-cGw"/>
                         <segue destination="sns-6r-FhE" kind="relationship" relationship="rootViewController" id="6Io-uG-ckN"/>
                     </connections>
                 </navigationController>
@@ -674,6 +684,7 @@ character @ $ # ! % * ? &amp;</string>
     </scenes>
     <resources>
         <image name="FBPlaceHolder" width="165" height="30"/>
+        <image name="Gear" width="16" height="16"/>
         <image name="HeartHome" width="25" height="23"/>
         <image name="HomeBase" width="25" height="25"/>
         <image name="Line" width="169" height="1"/>
@@ -686,6 +697,7 @@ character @ $ # ! % * ? &amp;</string>
         <image name="user" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="Wn7-yV-9XG"/>
         <segue reference="Mso-hK-uHZ"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="0.0" blue="0.027450980390000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

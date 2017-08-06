@@ -5,11 +5,11 @@
 //  Created by Jacob Levy on 6/21/17.
 //  Copyright © 2017 Jacob Levy. All rights reserved.
 //
-
+import SwiftKeychainWrapper 
 import UIKit
 //import TPKeyboardAvoiding
 class SignInViewController: UIViewController, UIScrollViewDelegate, UITextFieldDelegate {
-
+	
 	@IBOutlet var keyboardHeightLayoutConstraint: NSLayoutConstraint?
 
 	//@IBOutlet weak var ScrView: TPKeyboardAvoidingScrollView!
@@ -34,9 +34,11 @@ class SignInViewController: UIViewController, UIScrollViewDelegate, UITextFieldD
 	
 	
 	@IBAction func DidTapSI(_ sender: UIButton) {
+		var userName: String
+		var passWord: String
 		if UNtxtField.text != nil{
 			nameBool = true
-			var userName = UNtxtField.text!
+			 userName = UNtxtField.text!
 
 		}
 		else {
@@ -45,13 +47,15 @@ class SignInViewController: UIViewController, UIScrollViewDelegate, UITextFieldD
 		
 		if PWtxtField.text != nil{
 			passBool = true
-			var passWord = PWtxtField.text!
+			 passWord = PWtxtField.text!
 		}
 		else
 		{
 			passBool = false
 		}
 		
+		//have to write a validity check for sign in email 
+		//password validity check not necessary because malformed password should not result in login 
 		
 		if !(nameBool && passBool){
 			//code to alert user that they need to fill in the missing field, highlight and bring up keyboard and update bool values

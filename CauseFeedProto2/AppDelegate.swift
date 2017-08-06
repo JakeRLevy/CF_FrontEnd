@@ -9,24 +9,27 @@
 import Firebase
 import UIKit
 
+let myGreen = UIColor(colorLiteralRed: 43/255.0, green: 111/255.0, blue: 109/255.0, alpha: 1.0)
+let myAdjGreen = UIColor(colorLiteralRed: 131/255.0, green: 216/255.0, blue: 213/255.0, alpha: 1.0)
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	var window: UIWindow?
 
-	let myGreenBG = UIColor(colorLiteralRed: 43/255.0, green: 111/255.0, blue: 109/255.0, alpha: 1.0)
+
 	
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 		// Override point for customization after application launch.
 		
 		FirebaseApp.configure()
 
-		UITabBar.appearance().backgroundColor = myGreenBG
-		
-		
+		UITabBar.appearance().barTintColor = myAdjGreen
+	
+		UINavigationBar.appearance().setBackgroundImage(UIImage(named: "CauseFeedNavBG"), for: .default)
 		
 		return true
-		
+				
 	}
 
 	func applicationWillResignActive(_ application: UIApplication) {
