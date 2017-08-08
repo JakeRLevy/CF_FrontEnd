@@ -46,6 +46,7 @@ class UserProfileViewController: UIViewController {
 		do {
 			try firebaseAuth.signOut()
 			print("SIGNING OUT")
+			self.performSegue(withIdentifier: "Exit", sender: nil)
 			
 		} catch let signOutError as NSError {
 			print ("Error signing out of app: %@", signOutError)

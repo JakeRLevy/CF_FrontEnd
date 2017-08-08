@@ -21,33 +21,82 @@ class SignInViewController: UIViewController, UIScrollViewDelegate, UITextFieldD
 	@IBOutlet weak var FBph: UIImageView!
 	@IBOutlet weak var TWTph: UIImageView!
 	@IBOutlet weak var GOOGph: UIImageView!
+	@IBOutlet weak var EmailSIError: UILabel!
 	
 	
 	@IBOutlet weak var UNtxtField: UITextField!
 	@IBOutlet weak var PWtxtField: UITextField!
 	var nameBool = false
 	var passBool = false
-	var signInError: Bool =  false
+	var siEmailErr: Bool =  false
+	
 	var userName: String = ""
 	var passWord: String = ""
+	enum errorList: Error{
+		case passTooShort
+		case passNotConfirmed
+		case passNotMatchRegex
+		case emailTooLong
+		case emailTooShort
+		case emailMatchRegex
+		case userNameRegex
+		case nameMatch
+		case nameTooShort
+		case nameTooLong
+	}
 	
+	func isEmailValid(_ providedEmail: String) throws ->Bool {
+		
+		//verify that the email string is no longer than 254 chars (max allowed by SMTP)
+		//saves process time
+		guard (providedEmail.characters.count >= 8)else{
+			throw errorList.emailTooShort
+		}
+		guard (providedEmail.characters.count <= 254) else{
+			throw errorList.emailTooLong
+			//addresses can't be greater than 254 in length
+		}
+		
+		//let range = NSMakeRange(0, providedEmail.characters.count)
+		//regular expression that should match >=99% of emails adapted from:http://www.regular-expressions.info/email.html
+		let emailRegex = "^[-a-zA-Z0-9._%+*']{1,64}@([-.a-zA-Z0-9]{1,63}\\.){1,125}[a-zA-Z]{2,63}$"
+		let emailTest =  NSPredicate(format: "SELF MATCHES %@", emailRegex)
+		
+		guard (emailTest.evaluate(with: providedEmail)) else{
+			
+			print("Email Doesn't Match REGEX")
+			
+			throw errorList.emailMatchRegex
+		}
+		print("Checked EMAIL")
+		
+		return (emailTest.evaluate(with: providedEmail))
+	}
 	@IBAction func SignUpNow(_ sender: UIButton) {
 		self.performSegue(withIdentifier: "SI2SU", sender: self)
 	}
 	
 	
 	@IBAction func DidTapSI(_ sender: UIButton) {
-		
+		var result: Bool
 		if UNtxtField.text != nil{
+			
 			nameBool = true
 			 userName = UNtxtField.text!
-
+		/*	do{
+				
+			 try result = isEmailValid(userName)
+			}catch{
+				siEmailError.isHidden = false
+			}*/
 		}
 		else {
 			nameBool = false
 		}
 		
-		if PWtxtField.text != nil{
+		if (PWtxtField.text != nil){
+			
+			
 			passBool = true
 			 passWord = PWtxtField.text!
 		}
@@ -68,7 +117,7 @@ class SignInViewController: UIViewController, UIScrollViewDelegate, UITextFieldD
 			if let email = self.UNtxtField.text, let password = self.PWtxtField.text{
 				Auth.auth().signIn(withEmail: email, password: password, completion: { (user, error) in
 					if let error = error{
-						self.signInError = true
+						self.siEmailErr = true
 						print("\(error.localizedDescription)\n\n")
 						return
 					}
@@ -86,9 +135,33 @@ class SignInViewController: UIViewController, UIScrollViewDelegate, UITextFieldD
 		}
 	}
 
-
+	func textFieldDidEndEditing(_ textField: UITextField) {
+		textField.isHighlighted = false
+		EmailSIError.isHidden = true
+		var result: Bool
+		let fieldText = textField.text
+		
+		if (textField.tag == 0){
+			if (fieldText == nil){
+				textField.isHighlighted = true
+				EmailSIError.isHidden = false
+			}
+			else{
+			do{
+			try  result = isEmailValid(fieldText!)
+				if !(result){
+					print ("ERROR LINE 153")
+				}
+			} catch{
+				textField.isHighlighted = true
+				EmailSIError.isHidden = false
+				}
+			}
+		}
+	}
     override func viewDidLoad() {
         super.viewDidLoad()
+		EmailSIError.isHidden = true
 		/*FBph.image = UIImage(named: "FBPlaceHolder")
 		TWTph.image = UIImage(named: "TwitPlaceHolder")
 		GOOGph.image = UIImage(named: "googPlaceHolder")
@@ -96,8 +169,9 @@ class SignInViewController: UIViewController, UIScrollViewDelegate, UITextFieldD
 		//SignInButt.setBackgroundImage(UIImage(named: "signInButton"), for: .normal)
 		self.definesPresentationContext = true
 		//UNtxtField.becomeFirstResponder()
-		NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name:Notification.Name.UIKeyboardWillChangeFrame, object: nil)
-		NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name:Notification.Name.UIKeyboardWillChangeFrame, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name:Notification.Name.UIKeyboardWillShow, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name:Notification.Name.UIKeyboardWillHide, object: nil)
+		UNtxtField.delegate = self
 	/*	NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardNotification(notification:)), name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)*/
 
         // Do any additional setup after loading the view.
@@ -141,7 +215,7 @@ class SignInViewController: UIViewController, UIScrollViewDelegate, UITextFieldD
 	
 	override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
 		print("SHOULD PERFORM SEGUE?")
-		if (self.signInError == true){
+		if (self.siEmailErr == true){
 			return false
 		}
 		else{

@@ -33,7 +33,7 @@ class XfadeSegue: UIStoryboardSegue {
 		//sourceVC.definesPresentationContext = true
 		
 		destinationVC.view.transform = CGAffineTransform(translationX: -sourceVC.view.frame.size.width, y: 0)
-		masterVC.transition(from: sourceVC, to: destinationVC, duration: 1.0, options: [.curveEaseInOut, ], animations: {
+		masterVC.transition(from: sourceVC, to: destinationVC, duration: 0.250, options: [.curveEaseInOut, ], animations: {
 			destinationVC.view.transform = CGAffineTransform(translationX: 0, y: 0)
 		}, completion: nil)
 		

@@ -86,7 +86,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate,UITextViewDele
 		ConfirmPass.nextField = nil
 		NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_ :)), name:NSNotification.Name.UIKeyboardWillShow, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_ :)), name:NSNotification.Name.UIKeyboardWillHide, object: nil)
-	
+		//NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_ :)), name:NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
 
 		
 		
@@ -110,12 +110,21 @@ class SignUpViewController: UIViewController, UITextFieldDelegate,UITextViewDele
 	@IBAction func hideKeyboard(_ sender: AnyObject) {
 	FName.endEditing(true)
 	}
+	@objc func keyboardWillChange(_ notification: NSNotification){
+		var userInfo = notification.userInfo ?? [:]
+		
+		
+
+	}
+
 	@objc func keyboardWillShow(_ notification:NSNotification){
 		
 		var userInfo = notification.userInfo ?? [:]
 		let keyboardFrame:CGRect = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
 		
-		let adjustment = (keyboardFrame.height + 20)
+		let adjustment = (keyboardFrame.height +
+			5 )
+		
 		self.SuScroll.contentInset.bottom += adjustment
 		self.SuScroll.scrollIndicatorInsets.bottom += adjustment
 	//	self.SuScroll.automaticallyAdjustsScrollViewInsets
@@ -126,7 +135,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate,UITextViewDele
 	@objc func keyboardWillHide(_ notification:NSNotification){
 		var userInfo = notification.userInfo ?? [:]
 		let keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
-		let adjustment = -(keyboardFrame.height + 20)
+		let adjustment = -(keyboardFrame.height + 5)
 
 		//let adjustment = UIEdgeInsets(top: 0, left: 0, bottom: keyboardFrame.height, right: 0)
 		/*let mySubViews = self.view.subviews

@@ -106,7 +106,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Personal Profile Page" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fnj-Ro-5Ex">
-                                <rect key="frame" x="107" y="373" width="162" height="21"/>
+                                <rect key="frame" x="106.5" y="373" width="162" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -298,6 +298,9 @@
                             <color key="tintColor" red="0.46039102980000002" green="0.46039102980000002" blue="0.46039102980000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="tFc-hi-drv" kind="presentation" identifier="Exit" modalPresentationStyle="fullScreen" modalTransitionStyle="flipHorizontal" id="Mn2-Zo-e9o"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sbk-5T-Heb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -656,11 +659,11 @@ character @ $ # ! % * ? &amp;</string>
                         <viewControllerLayoutGuide type="bottom" id="gEV-1g-ebw"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="QIr-Zr-A39">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="342" height="305"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="swf-gq-wTl" userLabel="SIScroll" customClass="MyScroll" customModule="CauseFeedProto2" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="0.0" width="342" height="305"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Line" translatesAutoresizingMaskIntoConstraints="NO" id="kEn-Ie-GNJ" userLabel="ULine">
                                         <rect key="frame" x="19" y="198" width="152" height="1"/>
@@ -668,8 +671,8 @@ character @ $ # ! % * ? &amp;</string>
                                             <constraint firstAttribute="width" constant="152" id="T22-wG-8wf"/>
                                         </constraints>
                                     </imageView>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tMO-ML-qkO">
-                                        <rect key="frame" x="18" y="178" width="96" height="24"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tMO-ML-qkO">
+                                        <rect key="frame" x="18" y="178" width="52" height="24"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="italicSystem" pointSize="20"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -683,17 +686,17 @@ character @ $ # ! % * ? &amp;</string>
                                         <color key="textColor" red="0.46039102980000002" green="0.46039102980000002" blue="0.46039102980000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="O2d-Te-MYi">
+                                    <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="O2d-Te-MYi">
                                         <rect key="frame" x="19" y="214" width="90.5" height="24"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="italicSystem" pointSize="20"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="googPlaceHolder" translatesAutoresizingMaskIntoConstraints="NO" id="QXd-Pd-unp" userLabel="GoogPH">
-                                        <rect key="frame" x="104.5" y="115" width="165" height="30"/>
+                                        <rect key="frame" x="88" y="115" width="165" height="30"/>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FBPlaceHolder" translatesAutoresizingMaskIntoConstraints="NO" id="9rS-CC-NHS">
-                                        <rect key="frame" x="104.5" y="45" width="165" height="30"/>
+                                        <rect key="frame" x="88" y="45" width="165" height="30"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New to Causefeed?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jDa-my-ORn">
                                         <rect key="frame" x="0.0" y="1" width="151" height="20"/>
@@ -713,6 +716,7 @@ character @ $ # ! % * ? &amp;</string>
                                         </state>
                                         <connections>
                                             <action selector="SignUpNow:" destination="B1j-7F-TTz" eventType="touchUpInside" id="Wj6-b6-TVJ"/>
+                                            <segue destination="eQ2-3k-eV0" kind="show" identifier="SI2SU" customClass="XfadeSegue" customModule="CauseFeedProto2" customModuleProvider="target" id="Ngj-HC-omq"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Forgot?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a3i-St-5Wd">
@@ -722,24 +726,31 @@ character @ $ # ! % * ? &amp;</string>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TwitPlaceHolder" translatesAutoresizingMaskIntoConstraints="NO" id="law-nE-oFG">
-                                        <rect key="frame" x="104.5" y="80" width="165" height="30"/>
+                                        <rect key="frame" x="88" y="80" width="165" height="30"/>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Line" translatesAutoresizingMaskIntoConstraints="NO" id="Asp-wM-MH3">
                                         <rect key="frame" x="19" y="235" width="152" height="1"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BJc-Rl-DiA">
-                                        <rect key="frame" x="141.5" y="269" width="91" height="32"/>
+                                        <rect key="frame" x="125" y="269" width="91" height="32"/>
                                         <state key="normal" backgroundImage="signInButton"/>
                                         <connections>
                                             <action selector="DidTapSI:" destination="B1j-7F-TTz" eventType="touchUpInside" id="Tnw-Ch-Xrm"/>
                                         </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="OrLine" translatesAutoresizingMaskIntoConstraints="NO" id="9XG-VQ-JB8" userLabel="OrLine">
-                                        <rect key="frame" x="19" y="153" width="336" height="10"/>
+                                        <rect key="frame" x="19" y="153" width="303" height="10"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="10" id="sU0-g6-TLi"/>
                                         </constraints>
                                     </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Please enter your properly formatted email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zCN-po-ppM">
+                                        <rect key="frame" x="5.8224076915246314" y="198" width="330.00000000000034" height="20.999999999999943"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="1" green="0.0" blue="0.027450980390000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="a3i-St-5Wd" firstAttribute="top" secondItem="a6g-HH-C2i" secondAttribute="bottom" constant="20" id="285-br-qIR"/>
@@ -786,6 +797,7 @@ character @ $ # ! % * ? &amp;</string>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="EmailSIError" destination="zCN-po-ppM" id="7gh-MP-Ips"/>
                         <outlet property="FBph" destination="law-nE-oFG" id="hOA-ac-8Ev"/>
                         <outlet property="GOOGph" destination="QXd-Pd-unp" id="khq-ua-MXn"/>
                         <outlet property="PWtxtField" destination="O2d-Te-MYi" id="iwi-d0-Slg"/>
@@ -799,7 +811,7 @@ character @ $ # ! % * ? &amp;</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gOa-YE-yqz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1710.4000000000001" y="308.9955022488756"/>
+            <point key="canvasLocation" x="-1711.2" y="308.9955022488756"/>
         </scene>
         <!--Custom User Nav View Controller-->
         <scene sceneID="29o-gX-4u4">
@@ -845,8 +857,8 @@ character @ $ # ! % * ? &amp;</string>
         <image name="user" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="I9O-4r-rd7"/>
         <segue reference="Mso-hK-uHZ"/>
+        <segue reference="I9O-4r-rd7"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="0.0" blue="0.027450980390000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
