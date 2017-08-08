@@ -5,6 +5,7 @@
 //  Created by Jacob Levy on 6/21/17.
 //  Copyright © 2017 Jacob Levy. All rights reserved.
 //
+import FirebaseAuth
 import SwiftKeychainWrapper 
 import UIKit
 //import TPKeyboardAvoiding
@@ -26,7 +27,9 @@ class SignInViewController: UIViewController, UIScrollViewDelegate, UITextFieldD
 	@IBOutlet weak var PWtxtField: UITextField!
 	var nameBool = false
 	var passBool = false
-	
+	var signInError: Bool =  false
+	var userName: String = ""
+	var passWord: String = ""
 	
 	@IBAction func SignUpNow(_ sender: UIButton) {
 		self.performSegue(withIdentifier: "SI2SU", sender: self)
@@ -34,8 +37,7 @@ class SignInViewController: UIViewController, UIScrollViewDelegate, UITextFieldD
 	
 	
 	@IBAction func DidTapSI(_ sender: UIButton) {
-		var userName: String
-		var passWord: String
+		
 		if UNtxtField.text != nil{
 			nameBool = true
 			 userName = UNtxtField.text!
@@ -57,24 +59,34 @@ class SignInViewController: UIViewController, UIScrollViewDelegate, UITextFieldD
 		//have to write a validity check for sign in email 
 		//password validity check not necessary because malformed password should not result in login 
 		
-		if !(nameBool && passBool){
+		
 			//code to alert user that they need to fill in the missing field, highlight and bring up keyboard and update bool values
-			print("\nCHECKED HERE")
-			//remove following line after we add the code
-		//	self.performSegue(withIdentifier: "SI2SU", sender: self)
-			
-		}
-		else{
 			//submit the username and pw to the server for authentication
+		if (passBool && nameBool){
 			print("\nGot here")
-			
-			//pause this line until server grants authentication request
-			self.performSegue(withIdentifier: "SI2Home", sender: self)
+
+			if let email = self.UNtxtField.text, let password = self.PWtxtField.text{
+				Auth.auth().signIn(withEmail: email, password: password, completion: { (user, error) in
+					if let error = error{
+						self.signInError = true
+						print("\(error.localizedDescription)\n\n")
+						return
+					}
+					self.performSegue(withIdentifier: "SI2Home", sender: nil)
+
+				})
 			
 			//if server responds with suthentication error, ask user to re-enter information 
+			
+			}
+		}
+		else {print("\nCHECKED HERE")
+		//remove following line after we add the code
+		//	self.performSegue(withIdentifier: "SI2SU", sender: self)
 		}
 	}
-	
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
 		/*FBph.image = UIImage(named: "FBPlaceHolder")
@@ -126,26 +138,17 @@ class SignInViewController: UIViewController, UIScrollViewDelegate, UITextFieldD
 	deinit {
 		NotificationCenter.default.removeObserver(self)
 	}
-	/*@objc func keyboardNotification(notification: NSNotification) {
-		if let userInfo = notification.userInfo {
-			let endFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
-			let duration:TimeInterval = (userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0
-			let animationCurveRawNSN = userInfo[UIKeyboardAnimationCurveUserInfoKey] as? NSNumber
-			let animationCurveRaw = animationCurveRawNSN?.uintValue ?? UIViewAnimationOptions.curveEaseInOut.rawValue
-			let animationCurve:UIViewAnimationOptions = UIViewAnimationOptions(rawValue: animationCurveRaw)
-			if (endFrame?.origin.y)! >= UIScreen.main.bounds.size.height {
-				self.keyboardHeightLayoutConstraint?.constant = 0.0
-			} else {
-				self.keyboardHeightLayoutConstraint?.constant = endFrame?.size.height ?? 0.0
-			}
-			UIView.animate(withDuration: duration,
-			               delay: TimeInterval(0),
-			               options: animationCurve,
-			               animations: { self.view.layoutIfNeeded() },
-			               completion: nil)
+	
+	override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+		print("SHOULD PERFORM SEGUE?")
+		if (self.signInError == true){
+			return false
 		}
-	}*/
+		else{
+			return true
+		}
+	}
+	
 	
 }
-///EXTENSIONS
 
