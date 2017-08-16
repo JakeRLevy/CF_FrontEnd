@@ -8,26 +8,61 @@
 import FirebaseAuth
 import UIKit
 
-class UserProfileViewController: UIViewController {
-
+class UserProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+	//have to pull the user's swipe donation amount from DB
+	//and store in the user defaults
+	//this should be done on the first screen load
+	@IBOutlet weak var personalCauses: UITableView!
+ var tabledata: [String] = ["20", "$100.00", "$0.20"]
     override func viewDidLoad() {
         super.viewDidLoad()
-
+		personalCauses.delegate = self
+		personalCauses.dataSource = self
   //UITabBar.appearance().ackgroundColor = myGreenBG
 		
         // Do any additional setup after loading the view.
     }
-
-    override func didReceiveMemoryWarning() {
+	
+	override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+	func numberOfSections(in tableView: UITableView) -> Int {
+		// #warning Incomplete implementation, return the number of sections
+		return 1
+	}
+	
+	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		// #warning Incomplete implementation, return the number of rows
+		return 10 //for now, eventually will need count from DB
+	}
+	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		let cell:BasicTableRow = tableView.dequeueReusableCell(withIdentifier: "Basic", for: indexPath) as! BasicTableRow
+		
+			if (indexPath.row == 0){
+		cell.Causes.text = "Causes Supported"
+		cell.Goal.text = "Goal"
+		cell.Raised.text = "Raised"
+		cell.Days.text = "Days Remaining"
+		cell.Support.text = "My Support"
+		
+			}
+		if (indexPath.row > 0)
+		{
+		cell.Causes.text = "Sample Cause: Funding for Charity"
+		cell.Goal.text = "$500.00"
+		cell.Raised.text = "$235.75"
+		cell.Days.text = "10"
+		cell.Support.text = "53.25"
+		}
+		
+		return cell
+	}
+	
 	var handle: AuthStateDidChangeListenerHandle?
 	
 	override func viewWillAppear(_ animated: Bool) {
-		// handle = Auth.auth().addStateDidChangeListener{ (auth, user) in
-	//		print("Listening State Added for current user")
-	//	}
+	
 		 let user = Auth.auth().currentUser
 		if user != nil {
 			print("There is a current USER\n")
@@ -57,14 +92,7 @@ class UserProfileViewController: UIViewController {
 		
 	
 	}
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+	
+	
 
 }

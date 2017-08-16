@@ -110,12 +110,13 @@ class SignUpViewController: UIViewController, UITextFieldDelegate,UITextViewDele
 	@IBAction func hideKeyboard(_ sender: AnyObject) {
 	FName.endEditing(true)
 	}
+	/*
 	@objc func keyboardWillChange(_ notification: NSNotification){
 		var userInfo = notification.userInfo ?? [:]
 		
 		
 
-	}
+	}*/
 
 	@objc func keyboardWillShow(_ notification:NSNotification){
 		

@@ -78,7 +78,6 @@ class SignInViewController: UIViewController, UIScrollViewDelegate, UITextFieldD
 	
 	
 	@IBAction func DidTapSI(_ sender: UIButton) {
-		var result: Bool
 		if UNtxtField.text != nil{
 			
 			nameBool = true
@@ -118,7 +117,8 @@ class SignInViewController: UIViewController, UIScrollViewDelegate, UITextFieldD
 				Auth.auth().signIn(withEmail: email, password: password, completion: { (user, error) in
 					if let error = error{
 						self.siEmailErr = true
-						print("\(error.localizedDescription)\n\n")
+						self.EmailSIError.isHidden = false
+						print("\(error.localizedDescription)\n\n")  //change to an Alert
 						return
 					}
 					self.performSegue(withIdentifier: "SI2Home", sender: nil)
@@ -134,7 +134,9 @@ class SignInViewController: UIViewController, UIScrollViewDelegate, UITextFieldD
 		//	self.performSegue(withIdentifier: "SI2SU", sender: self)
 		}
 	}
-
+	func textFieldDidBeginEditing(_ textField: UITextField) {
+		EmailSIError.isHidden = true
+	}
 	func textFieldDidEndEditing(_ textField: UITextField) {
 		textField.isHighlighted = false
 		EmailSIError.isHidden = true
@@ -168,7 +170,7 @@ class SignInViewController: UIViewController, UIScrollViewDelegate, UITextFieldD
 		orLine.image = UIImage(named: "OrLine")*/
 		//SignInButt.setBackgroundImage(UIImage(named: "signInButton"), for: .normal)
 		self.definesPresentationContext = true
-		//UNtxtField.becomeFirstResponder()
+		UNtxtField.becomeFirstResponder()
 		NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name:Notification.Name.UIKeyboardWillShow, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name:Notification.Name.UIKeyboardWillHide, object: nil)
 		UNtxtField.delegate = self

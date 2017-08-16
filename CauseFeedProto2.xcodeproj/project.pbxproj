@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		6C0DB7DCD633690831CB71B1 /* Pods_CauseFeedProto2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D35F57967B29F8FB128F0ED /* Pods_CauseFeedProto2.framework */; };
 		B115D22CCAB537E774F4CA8F /* Pods_CauseFeedProto2UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89E0D18F9C208401F56245FC /* Pods_CauseFeedProto2UITests.framework */; };
+		B11E3D641F43961D00004279 /* typicalViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11E3D631F43961D00004279 /* typicalViewCell.swift */; };
+		B11E3D661F43C0C900004279 /* BasicTableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11E3D651F43C0C900004279 /* BasicTableRow.swift */; };
 		B12C18DD1F326B38003B5370 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12C18DC1F326B38003B5370 /* AppDelegate.swift */; };
 		B12C18DF1F326B38003B5370 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12C18DE1F326B38003B5370 /* FirstViewController.swift */; };
 		B12C18E11F326B38003B5370 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12C18E01F326B38003B5370 /* SecondViewController.swift */; };
@@ -53,6 +55,8 @@
 		89E0D18F9C208401F56245FC /* Pods_CauseFeedProto2UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CauseFeedProto2UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		965BFD215CA57A294889D290 /* Pods-CauseFeedProto2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CauseFeedProto2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CauseFeedProto2/Pods-CauseFeedProto2.debug.xcconfig"; sourceTree = "<group>"; };
 		9A81A923E5B910A2646432AB /* Pods-CauseFeedProto2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CauseFeedProto2.release.xcconfig"; path = "Pods/Target Support Files/Pods-CauseFeedProto2/Pods-CauseFeedProto2.release.xcconfig"; sourceTree = "<group>"; };
+		B11E3D631F43961D00004279 /* typicalViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = typicalViewCell.swift; sourceTree = "<group>"; };
+		B11E3D651F43C0C900004279 /* BasicTableRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BasicTableRow.swift; path = ../BasicTableRow.swift; sourceTree = "<group>"; };
 		B12C18D91F326B38003B5370 /* CauseFeedProto2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CauseFeedProto2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B12C18DC1F326B38003B5370 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B12C18DE1F326B38003B5370 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -149,6 +153,7 @@
 				B12C191C1F3404BB003B5370 /* CauseFeedProto2.entitlements */,
 				B12C18DC1F326B38003B5370 /* AppDelegate.swift */,
 				B12C18DE1F326B38003B5370 /* FirstViewController.swift */,
+				B11E3D651F43C0C900004279 /* BasicTableRow.swift */,
 				B12C190C1F326CAF003B5370 /* LoginViewController.swift */,
 				B12C190D1F326CAF003B5370 /* MyScroll.swift */,
 				B12C190E1F326CAF003B5370 /* SignInViewController.swift */,
@@ -158,6 +163,7 @@
 				B12C18E01F326B38003B5370 /* SecondViewController.swift */,
 				B16924321F344DBA00B9973C /* UserProfileViewController.swift */,
 				B12C18E21F326B39003B5370 /* Main.storyboard */,
+				B11E3D631F43961D00004279 /* typicalViewCell.swift */,
 				B16924341F344E9C00B9973C /* CustomUserNavViewController.swift */,
 				B12C18E51F326B39003B5370 /* Assets.xcassets */,
 				B12C18E71F326B39003B5370 /* LaunchScreen.storyboard */,
@@ -495,7 +501,9 @@
 				B12C18E11F326B38003B5370 /* SecondViewController.swift in Sources */,
 				B12C19141F326CAF003B5370 /* SignInViewController.swift in Sources */,
 				B12C18DD1F326B38003B5370 /* AppDelegate.swift in Sources */,
+				B11E3D661F43C0C900004279 /* BasicTableRow.swift in Sources */,
 				B12C19171F326CAF003B5370 /* XfadeSegue.swift in Sources */,
+				B11E3D641F43961D00004279 /* typicalViewCell.swift in Sources */,
 				B12C19131F326CAF003B5370 /* MyScroll.swift in Sources */,
 				B12C18DF1F326B38003B5370 /* FirstViewController.swift in Sources */,
 			);
