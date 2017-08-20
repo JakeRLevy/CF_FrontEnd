@@ -6,13 +6,20 @@
 //  Copyright © 2017 Jacob Levy. All rights reserved.
 //
 import FirebaseAuth
+import FirebaseDatabase
+		
 import UIKit
 
 class UserProfileViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 	//have to pull the user's swipe donation amount from DB
 	//and store in the user defaults
 	//this should be done on the first screen load
+	@IBOutlet weak var userName: UILabel!
 	@IBOutlet weak var personalCauses: UICollectionView!
+	@IBOutlet weak var TotalCauses: UILabel!
+	@IBOutlet weak var totalDonated: UILabel!
+	@IBOutlet weak var swipeAmt: UILabel!
+	@IBOutlet weak var Remaining: UILabel!
 	fileprivate let reuseCausesID = "Causes"
 	fileprivate let reuseGoalID = "Goal"
 	fileprivate let reuseRaisedID = "Raised"
@@ -26,6 +33,42 @@ class UserProfileViewController: UIViewController, UICollectionViewDelegate, UIC
 	
     override func viewDidLoad() {
         super.viewDidLoad()
+		var ref: DatabaseReference!
+		
+		ref = Database.database().reference()
+		let curUser = Auth.auth().currentUser
+		
+		let displayName: String = (curUser?.displayName)!
+		userName.text = displayName
+		ref.child("users").child(displayName).observeSingleEvent(of: .value, with: { (snapshot) in
+			// Get user value
+			let value = snapshot.value as? NSDictionary
+		//	let username = value?["username"] as? String ?? ""
+			let numCauses = value?["cause-count"] as? Float ?? -1.0
+			print (numCauses)
+			
+			self.TotalCauses.text = "\(numCauses)"
+			let totalDonations = value?["donated-amt"] as? Float ?? -1.0
+			self.totalDonated.text = "\(totalDonations)"
+			
+		
+			
+			let fundAmt = value?["funding-amt"] as? Float ?? -1.0
+			self.swipeAmt.text = "\(fundAmt)"
+			
+			let balance = value?["balance"] as? Float ?? -10.0
+			self.Remaining.text = "\(balance)"
+			
+			print("INFO: \((value?["info"])!)")
+			//let user = User.init(username: username)
+			
+			// ...
+  }) { (error) in
+	print(error.localizedDescription)
+	print ("HERE")
+	
+		}
+
 		personalCauses.delegate = self
 		personalCauses.dataSource = self
 
@@ -37,6 +80,8 @@ class UserProfileViewController: UIViewController, UICollectionViewDelegate, UIC
 		self.personalCauses.register(SupportViewCell.self, forCellWithReuseIdentifier: "Support")
 		//set layout
 		//SET UP TEST DATA
+		personalCauses.contentInset.bottom = 30
+		
 		for position in 0...49{
 			if (position % 5  == 0){
 				//testUserData["Causes"] = "Causes"

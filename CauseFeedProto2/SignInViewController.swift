@@ -75,7 +75,12 @@ class SignInViewController: UIViewController, UIScrollViewDelegate, UITextFieldD
 	@IBAction func SignUpNow(_ sender: UIButton) {
 		self.performSegue(withIdentifier: "SI2SU", sender: self)
 	}
-	
+	override func viewDidAppear(_ animated: Bool) {
+		if  Auth.auth().currentUser != nil{
+			self.performSegue(withIdentifier: "SI2Home", sender: self)
+			print ("HEEEEYYY")
+		}
+	}
 	
 	@IBAction func DidTapSI(_ sender: UIButton) {
 		if UNtxtField.text != nil{
@@ -164,6 +169,8 @@ class SignInViewController: UIViewController, UIScrollViewDelegate, UITextFieldD
     override func viewDidLoad() {
         super.viewDidLoad()
 		EmailSIError.isHidden = true
+		
+		
 		/*FBph.image = UIImage(named: "FBPlaceHolder")
 		TWTph.image = UIImage(named: "TwitPlaceHolder")
 		GOOGph.image = UIImage(named: "googPlaceHolder")
@@ -177,6 +184,7 @@ class SignInViewController: UIViewController, UIScrollViewDelegate, UITextFieldD
 	/*	NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardNotification(notification:)), name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)*/
 
         // Do any additional setup after loading the view.
+		
     }
 
 	@objc func keyboardWillShow(_ notification:NSNotification){
