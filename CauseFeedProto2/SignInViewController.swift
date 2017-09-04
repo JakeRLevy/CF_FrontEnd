@@ -6,7 +6,6 @@
 //  Copyright © 2017 Jacob Levy. All rights reserved.
 //
 import FirebaseAuth
-import SwiftKeychainWrapper 
 import UIKit
 //import TPKeyboardAvoiding
 class SignInViewController: UIViewController, UIScrollViewDelegate, UITextFieldDelegate {
@@ -78,7 +77,7 @@ class SignInViewController: UIViewController, UIScrollViewDelegate, UITextFieldD
 	override func viewDidAppear(_ animated: Bool) {
 		if  Auth.auth().currentUser != nil{
 			self.performSegue(withIdentifier: "SI2Home", sender: self)
-			print ("HEEEEYYY")
+			//print ("HEEEEYYY")
 		}
 	}
 	
