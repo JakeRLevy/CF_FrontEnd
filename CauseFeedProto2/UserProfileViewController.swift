@@ -14,15 +14,17 @@ class UserProfileViewController: UIViewController, UICollectionViewDelegate, UIC
 	//have to pull the user's swipe donation amount from DB
 	//and store in the user defaults
 	//this should be done on the first screen load
-	
+	private var rowHeight: CGFloat = 0
 	private var causes:Int = 0
 	 //call VWA and load the user data from the snap shot there, then remove from VDL
 	var curUser: User = Auth.auth().currentUser!
 	
 	var currentRef: DatabaseReference! = Database.database().reference()
 
-	var curUserData: UserDataObj = UserDataObj()
 	
+	var curUserData: UserDataObj = UserDataObj()
+	var usersCauses = [CauseModel]()
+	private var causeFlag: Bool = false
 	private var numRows: Int = 0
 		//currentUser is optional.  If there is no current user, the viewer has not signed in or they have no account (for the current version we do not allow viewing without sign in.  In the future we will want to show something to cover the "person profile" page
 	@IBOutlet weak var userName: UILabel!
@@ -48,34 +50,18 @@ class UserProfileViewController: UIViewController, UICollectionViewDelegate, UIC
     override func viewDidLoad() {
         super.viewDidLoad()
 		
-		/*var ref: DatabaseReference!
-		
 	
-		ref = Database.database().reference()*/
-		
-		//let displayName: String = (self.curUser?.displayName)!
-		
+		//Set the delegate & datasource of the personal causes table to this class
 		self.personalCauses.delegate = self
 		self.personalCauses.dataSource = self
-		// Get user values from Firebase
-		
-		//INSERTCODE HERE
-		if (self.curUserData.causeCount != nil){
+	//CODE FOR DURING DEVELOPMENT ONLY
+				if (self.curUserData.causeCount != nil){
 			print(" CORRECT ")
 			
 		}
 		else{
 			print(" Incorrect ")
 		}
-		/*
-		
-		print("INFO: \((value?["info"])!)")
-		let info = value?["info"] as? NSDictionary ?? nil
-		//let keys:[String] = info?.allKeys as! [String]
-		let infoVal = info?["name"] as? String ?? ""
-		print( infoVal )
-		
-		*/
 		
 		
 		// ...
@@ -87,16 +73,14 @@ class UserProfileViewController: UIViewController, UICollectionViewDelegate, UIC
 		self.personalCauses.register(RaisedViewCell.self, forCellWithReuseIdentifier: "Raised")
 		self.personalCauses.register(DaysViewCell.self, forCellWithReuseIdentifier: "Days")
 		self.personalCauses.register(SupportViewCell.self, forCellWithReuseIdentifier: "Support")
-		//set layout
-		//SET UP TEST DATA
 		
-		
+		//FOR DEBUGGING
 		personalCauses.contentInset.bottom = 30
 		if (self.numRows > 0){
 			print ("numRows from VDL: \(self.numRows)")
 		}
 		
-		///////////
+		//set layout
 		let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
 		layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
 		layout.minimumInteritemSpacing = 0
@@ -112,40 +96,57 @@ class UserProfileViewController: UIViewController, UICollectionViewDelegate, UIC
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+	
+	//Delegate method for determining the size of an item(cell) in the collection
 	@objc func collectionView(_ sizeForItemAtcollectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
 	                          sizeForItemAt indexPath: IndexPath) -> CGSize {
-	//	print ("Item #\(indexPath.item)")  //print statement for debugging
+	//set a basic/default size for the cells
 		var height: CGFloat = 44
 		let padding:CGFloat = 2
 		var width:CGFloat = 120
 		var text: String
+		//the String array TestUSerData corresponds to the number of cells currently stored in the collection
+		//if there are any elements in the testUserData Array then there are cells in the collection
+		//otherwise no cells have been added yet
 		if (testUserData.count > 0){
 		text = self.testUserData[indexPath.item]
 		}
 		else{
 			text = "Nothing Created Yet"
 		}
-		height = self.estimatedFrameHeight(text: text).height + padding
+		//dynamic cell height
+		
+		//Every 5 cells in the collection correspond to a single cause row, with 1-1 correspondence with every 5 elements in the String Array which can essentially be thought of as holding the cell's type
+		//First will be a Cause Cell, then Goal Cell, then Raised Cell, then Days Cell, and finally a Support Cell
+		//This code checks for the type from the TestUserData Array and sets the corresponding cell's size to the appropriate width
 		if (text == "Cause"){
 			width = personalCauses.frame.width/3
+			height = max(self.estimatedFrameHeight(text: text).height + padding, height)  //estimates the height based on the amount of text and chooses the max between that and the default height
+			self.rowHeight = height //set the class variable rowheight to the height of the cause cell
 		}
 		else if (text == "Goal"){
 			width  = personalCauses.frame.width/6
+			height = self.rowHeight  //set the height of following elements to the same height as the current cause height
 		}
 		else if (text == "Raised"){
 			width = personalCauses.frame.width/6
+			height = self.rowHeight
 		}
 		else if (text == "Days"){
 			width = personalCauses.frame.width/6
+			height =  self.rowHeight
 		}
 		else if (text == "Support"){
 			width = personalCauses.frame.width/6
+			height = self.rowHeight
 		}
 		else{
 			width = personalCauses.frame.width/5
+			height = 44
+			
 		}
 		
-		  return CGSize(width: width, height: 44)
+		  return CGSize(width: width, height: height)
 	}
 	private func estimatedFrameHeight(text:String) -> CGRect{
 		//we make the height arbitrarily large so we don't undershoot height in calculation
@@ -158,14 +159,16 @@ class UserProfileViewController: UIViewController, UICollectionViewDelegate, UIC
 	}
 	
 	
-	
+	//there is only a single section
 	 func numberOfSections(in collectionView: UICollectionView) -> Int {
 		
 		
 		return 1
 	}
 	
-	//Returns a number of cells = to the total number of Causes * 5 fields per Cause
+	//Returns a number of cells = to the total number of Causes * 5 fields per Cause if there has been no userDataObject defined yet
+	//Once it has been defined, the numRows var is set to the number of causes that the user has supported
+	//and creates that number * 5 cells for the grid
 	
 	 func collectionView(_ collectionView: UICollectionView,
 	                             numberOfItemsInSection section: Int) -> Int {
@@ -181,16 +184,23 @@ class UserProfileViewController: UIViewController, UICollectionViewDelegate, UIC
 	}
 	
 	// Function that determines what type of cell each cell actually is
+	//After the cause table has been reloaded, the user data object exists
+	//and the number of table rows (and total number of cells has been determined)
+	//and from the numberofitemsInSection function, we know it will always be a multiple of 5
 	 func collectionView(_ collectionView: UICollectionView,
 	                             cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 	
-		
-		//print ("item is \(indexPath.item)")
-		
+		var currentCause: CauseModel
+		//set a boolean flag to signal when data has been downloaded
 		if (indexPath.item % 5 == 0){
-		
+			if (self.causeFlag){
+				currentCause = self.usersCauses[ (indexPath.item / 5) ]
+			}
+			else {
+				currentCause = CauseModel()
+			}
 		let CauseCell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseCausesID, for: indexPath) as!typicalViewCell
-		CauseCell.textLabel?.text  = "Causes Supported"
+		CauseCell.textLabel?.text  = currentCause.getName()
 		//	CauseCell.textLabel.sizeToFit()
 		//	if (indexPath.item > 0){
 		CauseCell.frame = CGRect(x: CauseCell.frame.origin.x, y: CauseCell.frame.origin.y, width: personalCauses.frame.width/3, height: 44)
@@ -206,10 +216,15 @@ class UserProfileViewController: UIViewController, UICollectionViewDelegate, UIC
 			//return CausesCell
 		}
 		else if (indexPath.item % 5 == 1){
-			
+			if (self.causeFlag){
+				currentCause = self.usersCauses[ Int(indexPath.item / 5) ]
+			}
+			else {
+				currentCause = CauseModel()
+			}
 			 let GoalCell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseGoalID,
 			                                                    for: indexPath) as! GoalCellCollectionViewCell
-			GoalCell.textLabel?.text  = "Goal"
+			GoalCell.textLabel?.text  = String(currentCause.getGoal())
 			GoalCell.frame = CGRect(x: GoalCell.frame.origin.x, y: GoalCell.frame.origin.y, width: personalCauses.frame.width/6, height: 44)
 			//GoalCell.textLabel.sizeToFit()
 			//GoalCell.frame = CGRect(x: Cause, y: 0 , width: 50, height: 44)
@@ -221,10 +236,15 @@ class UserProfileViewController: UIViewController, UICollectionViewDelegate, UIC
 			//return CausesCell
 		}
 			else if (indexPath.item % 5 == 2){
-			
+			if (self.causeFlag){
+				currentCause = self.usersCauses[ Int(indexPath.item / 5) ]
+			}
+			else {
+				currentCause = CauseModel()
+			}
 			let RaisedCell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseRaisedID,
 			                                                    for: indexPath) as! RaisedViewCell
-			RaisedCell.textLabel.text  = "Raised"
+			RaisedCell.textLabel.text  = String(currentCause.getRaised())
 			RaisedCell.frame = CGRect(x: RaisedCell.frame.origin.x, y: RaisedCell.frame.origin.y, width: personalCauses.frame.width/6, height: 44)
 			// Configure the cell
 			//cell = RaisedCell
@@ -233,9 +253,15 @@ class UserProfileViewController: UIViewController, UICollectionViewDelegate, UIC
 			return RaisedCell
 		}
 		else if (indexPath.item % 5 == 3){
-			
+			if (self.causeFlag){
+				currentCause = self.usersCauses[ Int(indexPath.item / 5) ]
+			}
+			else {
+				currentCause = CauseModel()
+			}
 			let DaysCell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseDaysID,
 			                                                    for: indexPath) as! DaysViewCell
+			//have to finish working with date formatter to complete
 			DaysCell.textLabel?.text  = "Days"
 			DaysCell.frame = CGRect(x: DaysCell.frame.origin.x, y: DaysCell.frame.origin.y, width: personalCauses.frame.width/6, height: 44)
 			
@@ -246,16 +272,22 @@ class UserProfileViewController: UIViewController, UICollectionViewDelegate, UIC
 			return DaysCell
 		}
 		else /*if (indexPath.item % 5 == 4)*/{
-			
+			if (self.causeFlag){
+				currentCause = self.usersCauses[ Int(indexPath.item / 5) ]
+			}
+			else {
+				currentCause = CauseModel()
+			}
 			let SupportCell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseSupportID,
 			                                                    for: indexPath) as! SupportViewCell
 			SupportCell.textLabel.numberOfLines = 5
-			SupportCell.textLabel?.text  = "My Support"
+			SupportCell.textLabel?.text  = String(currentCause.getMySup())
 			SupportCell.frame = CGRect(x: SupportCell.frame.origin.x, y: SupportCell.frame.origin.y, width: personalCauses.frame.width/6, height: 44)
 			// Configure the cell
 			//cell = SupportCell
 			SupportCell.layer.borderWidth = 1
 			SupportCell.layer.borderColor = UIColor.black.cgColor
+			
 			return SupportCell
 		}
 			}
@@ -263,7 +295,10 @@ class UserProfileViewController: UIViewController, UICollectionViewDelegate, UIC
 	var handle: AuthStateDidChangeListenerHandle?
 	
 	override func viewWillAppear(_ animated: Bool) {
+		
+		
 		self.personalCauses.isHidden = true
+		//----For Debugging purposes
 		if let currentUser = Auth.auth().currentUser { //if there is a current user
 			self.curUser = currentUser //set the local page variable curUser to the currentUser
 			print ("Current User :  SUCCESS")
@@ -273,15 +308,19 @@ class UserProfileViewController: UIViewController, UICollectionViewDelegate, UIC
 			self.userName.text = "Error LINE 290"
 			print ("ERROR Line 291")
 		}
-	
+		//----
+		
+		//Completion handler that is used in the loadCurrentUserData Function
+		//The following code does not run until the data has come back from the asynchronous Firebase Call
 		UserDataObj.loadCurrentUserData {
-	//DispatchQueue? May update this function to utilize Swift Dispatch Queues to improve load time
+
 			(userCurrent) in
-			self.curUserData = userCurrent
-			self.numRows = userCurrent.causeCount!
+			self.curUserData = userCurrent	//store the current user in a class variable so there is only one user
+			self.numRows = userCurrent.causeCount!  //Set the number of rows to the number of causes
 			
+			
+			//Now there is a user data object and we know the number of causes so we can create the UserDataArray of Labels for the cell types in a regular pattern as described previously
 			for position in 0..<(userCurrent.causeCount! * 5){
-				//print("Item # \(position)")  //Print statement for debugging
 				if (position % 5  == 0){
 					self.testUserData.append("Cause")
 				}
@@ -295,28 +334,95 @@ class UserProfileViewController: UIViewController, UICollectionViewDelegate, UIC
 					self.testUserData.append("Days")
 				}
 				else {
-					//testUserData["Support"] = "Support"
 					self.testUserData.append("Support")
 				}
 			}
+			
+		//	var currentCause = CauseModel()
+			
+				/**********
+				*For each key in the donated to causes Dict, enter a dispatch group
+				*load a cause model with the data
+				*pull the mySupport & name from the Donated2CausesDict at the correct location
+				*leave the group
+				*Use the loaded cause model to fill out the Grid row
+				***********/
+				//Move this to the testUserData.Append(Cause) line
+				//Store these loaded cause models in an array of Cause Models, each corresponding to the row they need to 
+				//fill out
+				
+			
+		
+			//Print Statements for quick debugging
 			self.TotalCauses.text = String(format: "%4d",self.curUserData.causeCount!)
 			
 			self.totalDonated.text = String(format: "$%.2f",(self.curUserData.donatedTotal! / 100))
 			
 			self.swipeAmt.text =  String(format: "$%.2f",(self.curUserData.swipeAmt! / 100))
 			self.Remaining.text =  String(format: "$%.2f",(self.curUserData.balance! / 100))
-			self.personalCauses.reloadData()
+			
+			
+			
+			
+			let causeDict = userCurrent.Donated2CausesDict!
+			
+			
+			let group = DispatchGroup()
+			let causeRef  = Database.database().reference().child("causes")
+			var simpleDonationDict: Dictionary<String, Float> = Dictionary<String, Float>()
+			var mySupport:Float
+			for (causeKey, causeSupport) in (causeDict){
+				for (subKey) in (causeSupport.keys){
+					if (subKey == "donated"){
+						mySupport = (causeSupport[subKey]! /  100)
+					//	print ("Cause : \(causeKey), My Support: \(mySupport) added to simpleDict")
+						simpleDonationDict[causeKey] = mySupport
+					}
+				}
+			}
+			//Change this to the single call
+			//create a causemodel array outside of this function
+			//append to it in the completion handler for the single cause download
+			
+			
+			
+			
+			//var temp : CauseModel = CauseModel()
+			
+			for (causeKey, mySupport) in simpleDonationDict {
+			print("Fetching Cause Data for SimpleDict Cause: \(causeKey), With My Support: \(mySupport)")
+
+			group.enter()
+			CauseModel.downloadSingleCause(causeKey: causeKey, causeSupport: mySupport, completion: { (currentCause) in
+				self.usersCauses.append(currentCause)
+				print("in callback")
+				print ("\(currentCause.getName()) : Goal : \(currentCause.getGoal())")
+				group.leave()
+			})
+			}
+			group.notify(queue: .main, execute: { 
+				print("Callbacks Completed")
+				self.causeFlag = true
+				print("Testing.......")
+				for (causeModel) in self.usersCauses{
+					print("Cause: \(causeModel.getName())  Goal \(causeModel.getGoal())")
+				}
+				self.personalCauses.reloadData()
+
+			})
+			//Reload the Data
+			//reveal the table now that it has reloaded
 			self.personalCauses.isHidden = false
-
+			
+		
 		}
-		
-		//	var curUserData: UserDataObj = UserDataObj()
-		
-		
+	
+	}
+
 
 		
-	}
 	
+	//Not used
 	func isThereAUser(Count: Int) -> Void{
 		if (Count > 0){
 			self.numRows = Count
@@ -326,7 +432,7 @@ class UserProfileViewController: UIViewController, UICollectionViewDelegate, UIC
 			print("Error line 280, No user data object created")
 		}
 	}
-	
+	//User interaction function.  Called when the user taps the sign out button
 	@IBAction func TappedSignOut(_ sender: Any) {
 		let firebaseAuth = Auth.auth()
 		do {

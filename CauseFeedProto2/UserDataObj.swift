@@ -1,5 +1,6 @@
 //
 //  UserDataObj.swift
+//contains Models for UserData and CauseData
 //  CauseFeedProto2
 //
 //  Created by Jacob Levy on 8/30/17.
@@ -17,10 +18,10 @@ class UserDataObj : NSObject, NSCopying{
 	 var userID:String?
 	 var balance: Float?
 	 var causeCount: Int?
-	 var Donated2CausesDict: Dictionary? = [String : Float]()
+	 var Donated2CausesDict: Dictionary? = [String : [String : Float]]()
 	 var donatedTotal: Float?
 	 var swipeAmt: Float?
-	 var info: Dictionary? = [String: String]()
+	 var info: Dictionary? = [String : [String : String]]()
 	
 	required override init(){
 		super.init()
@@ -39,8 +40,51 @@ class UserDataObj : NSObject, NSCopying{
 	override var description: String{
 		return ("User Name: \(displayName!)  User ID: \(userID!) Balance: $\(balance!/100) Typical Swipe Donation: $\(swipeAmt!/100) Total Amount Donated: $\(donatedTotal!/100)")
 	}
-	/**This function sets the local User Data Object*/
+/*
+	class func loadCurrentCauseData( simpleDonationDict: Dictionary<String, Float>, completion: @escaping (_ causeData: [CauseModel])-> () ) {
+		var currentCause: CauseModel
+		var causeArray: [CauseModel] = [CauseModel]()
+		let group = DispatchGroup()
+		let causeRef  = Database.database().reference().child("causes")
+		for (causeKey, mySupport) in simpleDonationDict {
+			print( "Cause: \(causeKey), My Support: \(mySupport)")
+		}
+		var counter: Int = 0
+		
+		for (causeKey, mySupport) in simpleDonationDict {
+			print("Fetching Cause Data for SimpleDict Cause: \(causeKey), With My Support: \(mySupport)")
+			
+			group.enter()
+			print("Getting \(causeKey)")
+			self.downloadSingleCause(causeKey: causeKey, causeSupport: mySupport, completion: { (thisCause) in
+				if (thisCause != nil){
+					print ("\(thisCause.getName()) has been downloaded" )
+				}
+
+			})
+			
+			//print("Current Cause: \(currentCause.getName())")
+			
+				
+					//currentCause.setCauseDataFromSnapShot(value: value)
+			
+		}
+		
+		group.notify(queue: .main) {
+			print("Callbacks Completed")
+			for (cause) in (causeArray){
+				print("Loading...")
+				print("\(cause.getName()) my Support: \(cause.getMySup()) Goal: \(cause.getGoal())")
+			}
+			completion(causeArray)
+			//completion(currentCause)
+		}
+		//return causeArray
+
+	}//Continue from here.....
 	
+	*/
+	/**This function sets the local User Data Object*/
 	class func loadCurrentUserData(  completion: @escaping (_ userData: UserDataObj) -> ()) {
 		let current : User = Auth.auth().currentUser!
 		let currentRef = Database.database().reference().child("users").child((current.displayName)!)
@@ -114,9 +158,9 @@ class UserDataObj : NSObject, NSCopying{
 
 	
 	
+	//class func
+
 	
-
-
 	func setUserDataFromSnapShot(value: NSDictionary?){
 		let causes = value?["cause-count"] as? Float ?? -1.0
 		causeCount = Int (causes)
@@ -125,10 +169,11 @@ class UserDataObj : NSObject, NSCopying{
 		
 		swipeAmt = value?["funding-amt"] as? Float ?? -1.0
 		
-		info = value?["info"] as? [String : String] ??  ["name" : "Error.  Contact Help"]
+		info = value?["info"] as? Dictionary<String, Dictionary<String, String>> ??  ["name" : ["Missing":"Error.  Contact Help"]]
+		
 		donatedTotal = value?["donated-amt"] as? Float ?? -11.11
 		
-		Donated2CausesDict = value?["causes"] as? [String : Float] ?? ["causeName" : -1234567.89]
+		Donated2CausesDict = value?["causes"] as? Dictionary<String, Dictionary<String, Float>> ?? ["causeName" : ["Missing" : -1234567.89] ]
 	
 	}
 	func copy(with zone: NSZone? = nil) -> Any {
@@ -148,4 +193,87 @@ class UserDataObj : NSObject, NSCopying{
 	}
 	
 	
+}
+
+class CauseModel{
+	private var name: String
+	private var description: String?
+	private var Goal: Float
+	private var Raised: Float
+	private var Days: Int
+	private var Support: Float
+	
+	init(name: String, description: String?, Goal: Float, Raised: Float, Days: Int, Support: Float) {
+		self.name = name
+		self.description = (description != nil) ? description : ""
+		self.Goal = Goal
+		self.Raised = Raised
+		self.Days = Days
+		self.Support = Support
+		
+	}
+	init(){
+		self.name = "UnNamed"
+		self.description = "Missing Description..."
+		self.Goal = 0
+		self.Raised = 0
+		self.Days = 10000000
+		self.Support = 0
+	}
+	
+	 func setSupport( newSupport: Float){
+		self.Support = newSupport
+	}
+	func getName() -> String {
+		return self.name
+	}
+	func getGoal() -> Float{
+		return self.Goal
+	}
+	func getRaised() -> Float{
+		return self.Raised
+	}
+	func getMySup() -> Float{
+		return self.Support
+	}
+	class func downloadSingleCause(causeKey: String, causeSupport: Float, completion: @escaping (_ singleCauseData: CauseModel) -> ()){
+		let causeRef  = Database.database().reference().child("causes").child(causeKey)
+		var currentCause: CauseModel = CauseModel()
+		
+		causeRef.observeSingleEvent(of: .value, with: { (snapshot) in
+			let value = snapshot.value as? NSDictionary
+			currentCause.setCauseDataFromSnapShot(indSupport: causeSupport, name: causeKey, value: value)
+			completion(currentCause)
+
+		})
+		
+	}
+	func setCauseDataFromSnapShot(indSupport: Float, name: String, value: NSDictionary?){
+		self.name = name
+		self.Support = indSupport
+		
+		let calendar = Calendar.current
+		var deadStr: Date
+		var now: Date = Date()
+		let dateFormatter = DateFormatter()
+		dateFormatter.dateFormat = "MM-dd-yyyy"
+		self.description = (value?["description"] as? String ?? "Missing Description")!
+		self.Goal = value?["goal"] as? Float ?? -1000.0
+		print("Goal: \(self.Goal)")
+		print ("Deadline : \(value?["deadline"] as? String)")
+		//let deadline = dateFormatter.date(from: (value?["deadline"] as? String)! )!
+		
+	//	calendar.date(bySettingHour: 12, minute: 00, second: 00, of: calendar.startOfDay(for: deadline	))
+	//	calendar.date(bySettingHour: 12, minute: 00, second: 00, of: calendar.startOfDay(for: now	))
+	//	print("The Deadline is : \(deadline)")
+	//	let difference = calendar.dateComponents([.day], from: now, to: deadline)
+	//	print("The difference is \(difference) days")
+	//	self.Days = difference.day! ?? 0
+		
+		
+		
+		
+		self.Raised = value?["raised"] as? Float ?? 0000
+		
+	}
 }
