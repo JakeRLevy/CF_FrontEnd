@@ -17,11 +17,13 @@ class UserProfileViewController: UIViewController, UICollectionViewDelegate, UIC
 	private var rowHeight: CGFloat = 0
 	private var causes:Int = 0
 	 //call VWA and load the user data from the snap shot there, then remove from VDL
-	var curUser: User = Auth.auth().currentUser!
+	var curUser = Auth.auth().currentUser
+	
 	
 	var currentRef: DatabaseReference! = Database.database().reference()
-
-	
+	private var loadFinished: Bool = false
+	private var loadStarted: Bool = false
+	private var loadAlert: UIAlertController = UIAlertController()
 	var curUserData: UserDataObj = UserDataObj()
 	var usersCauses = [CauseModel]()
 	private var causeFlag: Bool = false
@@ -55,13 +57,13 @@ class UserProfileViewController: UIViewController, UICollectionViewDelegate, UIC
 		self.personalCauses.delegate = self
 		self.personalCauses.dataSource = self
 	//CODE FOR DURING DEVELOPMENT ONLY
-				if (self.curUserData.causeCount != nil){
+	/*			if (self.curUserData.causeCount != nil){
 			print(" CORRECT ")
 			
 		}
 		else{
 			print(" Incorrect ")
-		}
+		}*/
 		
 		
 		// ...
@@ -86,7 +88,7 @@ class UserProfileViewController: UIViewController, UICollectionViewDelegate, UIC
 		layout.minimumInteritemSpacing = 0
 		layout.minimumLineSpacing = 0
 		personalCauses.collectionViewLayout = layout
-		
+		self.loadAlert.dismiss(animated: false, completion: nil)
 		
 
 		
@@ -187,6 +189,8 @@ class UserProfileViewController: UIViewController, UICollectionViewDelegate, UIC
 	//After the cause table has been reloaded, the user data object exists
 	//and the number of table rows (and total number of cells has been determined)
 	//and from the numberofitemsInSection function, we know it will always be a multiple of 5
+	
+	
 	 func collectionView(_ collectionView: UICollectionView,
 	                             cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 	
@@ -200,20 +204,15 @@ class UserProfileViewController: UIViewController, UICollectionViewDelegate, UIC
 				currentCause = CauseModel()
 			}
 		let CauseCell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseCausesID, for: indexPath) as!typicalViewCell
-		CauseCell.textLabel?.text  = currentCause.getName()
-		//	CauseCell.textLabel.sizeToFit()
-		//	if (indexPath.item > 0){
+		CauseCell.textLabel?.text  = currentCause.getTitle()
+		
+			
 		CauseCell.frame = CGRect(x: CauseCell.frame.origin.x, y: CauseCell.frame.origin.y, width: personalCauses.frame.width/3, height: 44)
-			/*}
-			else{
-				CauseCell.frame = CGRect(x: personalCauses.frame.origin.x, y: personalCauses.frame.origin.y, width: 120, height: 44)
-			}*/
+		
 			CauseCell.layer.borderWidth = 1
 			CauseCell.layer.borderColor = UIColor.black.cgColor
 			return CauseCell
-		// Configure the cell
-			//cell = CausesCell
-			//return CausesCell
+	
 		}
 		else if (indexPath.item % 5 == 1){
 			if (self.causeFlag){
@@ -226,14 +225,11 @@ class UserProfileViewController: UIViewController, UICollectionViewDelegate, UIC
 			                                                    for: indexPath) as! GoalCellCollectionViewCell
 			GoalCell.textLabel?.text  = String(currentCause.getGoal())
 			GoalCell.frame = CGRect(x: GoalCell.frame.origin.x, y: GoalCell.frame.origin.y, width: personalCauses.frame.width/6, height: 44)
-			//GoalCell.textLabel.sizeToFit()
-			//GoalCell.frame = CGRect(x: Cause, y: 0 , width: 50, height: 44)
+	
 			GoalCell.layer.borderWidth = 1
 			GoalCell.layer.borderColor = UIColor.black.cgColor
 			return GoalCell
-			// Configure the cell
-			//cell = GoalCell
-			//return CausesCell
+		
 		}
 			else if (indexPath.item % 5 == 2){
 			if (self.causeFlag){
@@ -246,8 +242,7 @@ class UserProfileViewController: UIViewController, UICollectionViewDelegate, UIC
 			                                                    for: indexPath) as! RaisedViewCell
 			RaisedCell.textLabel.text  = String(currentCause.getRaised())
 			RaisedCell.frame = CGRect(x: RaisedCell.frame.origin.x, y: RaisedCell.frame.origin.y, width: personalCauses.frame.width/6, height: 44)
-			// Configure the cell
-			//cell = RaisedCell
+			
 			RaisedCell.layer.borderWidth = 1
 			RaisedCell.layer.borderColor = UIColor.black.cgColor
 			return RaisedCell
@@ -298,6 +293,26 @@ class UserProfileViewController: UIViewController, UICollectionViewDelegate, UIC
 		
 		
 		self.personalCauses.isHidden = true
+	/*  Addin
+			 self.loadAlert =  UIAlertController(title: "Loading", message: "Loading Your Profile...", preferredStyle: .alert)
+			self.loadAlert.view.tintColor = myAdjGreen
+			let actIndSize = personalCauses.frame.size
+			let actIndFrame = CGRect(x: self.userName.frame.origin.x, y: self.userName.frame.origin.y, width: actIndSize.width, height: actIndSize.height)
+			
+			
+			let loadIndicator = UIActivityIndicatorView(frame: actIndFrame)
+			loadIndicator.hidesWhenStopped = true
+			loadIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.white
+			loadIndicator.startAnimating()
+			loadAlert.view.addSubview(loadIndicator)
+			if (!self.loadAlert.isBeingPresented){
+			present(self.loadAlert, animated: true, completion: nil)
+			}
+			else{
+				self.loadAlert.dismiss(animated: false, completion: nil)
+			}
+		*/
+		
 		//----For Debugging purposes
 		if let currentUser = Auth.auth().currentUser { //if there is a current user
 			self.curUser = currentUser //set the local page variable curUser to the currentUser
@@ -313,7 +328,7 @@ class UserProfileViewController: UIViewController, UICollectionViewDelegate, UIC
 		//Completion handler that is used in the loadCurrentUserData Function
 		//The following code does not run until the data has come back from the asynchronous Firebase Call
 		UserDataObj.loadCurrentUserData {
-
+			
 			(userCurrent) in
 			self.curUserData = userCurrent	//store the current user in a class variable so there is only one user
 			self.numRows = userCurrent.causeCount!  //Set the number of rows to the number of causes
@@ -408,15 +423,18 @@ class UserProfileViewController: UIViewController, UICollectionViewDelegate, UIC
 					print("Cause: \(causeModel.getName())  Goal \(causeModel.getGoal())")
 				}
 				self.personalCauses.reloadData()
-
+				
 			})
 			//Reload the Data
 			//reveal the table now that it has reloaded
+		
+		
 			self.personalCauses.isHidden = false
 			
 		
 		}
 	
+		
 	}
 
 

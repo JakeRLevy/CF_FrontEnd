@@ -202,6 +202,7 @@ class CauseModel{
 	private var Raised: Float
 	private var Days: Int
 	private var Support: Float
+	private var Title: String
 	
 	init(name: String, description: String?, Goal: Float, Raised: Float, Days: Int, Support: Float) {
 		self.name = name
@@ -210,7 +211,7 @@ class CauseModel{
 		self.Raised = Raised
 		self.Days = Days
 		self.Support = Support
-		
+		self.Title = "No Title Yet"
 	}
 	init(){
 		self.name = "UnNamed"
@@ -219,6 +220,7 @@ class CauseModel{
 		self.Raised = 0
 		self.Days = 10000000
 		self.Support = 0
+		self.Title = "No Title Yet"
 	}
 	
 	 func setSupport( newSupport: Float){
@@ -235,6 +237,9 @@ class CauseModel{
 	}
 	func getMySup() -> Float{
 		return self.Support
+	}
+	func getTitle()->String{
+		return self.Title
 	}
 	class func downloadSingleCause(causeKey: String, causeSupport: Float, completion: @escaping (_ singleCauseData: CauseModel) -> ()){
 		let causeRef  = Database.database().reference().child("causes").child(causeKey)
@@ -259,16 +264,10 @@ class CauseModel{
 		dateFormatter.dateFormat = "MM-dd-yyyy"
 		self.description = (value?["description"] as? String ?? "Missing Description")!
 		self.Goal = value?["goal"] as? Float ?? -1000.0
+		self.Title = value?["title"] as? String ?? "No Title"
 		print("Goal: \(self.Goal)")
 		print ("Deadline : \(value?["deadline"] as? String)")
-		//let deadline = dateFormatter.date(from: (value?["deadline"] as? String)! )!
 		
-	//	calendar.date(bySettingHour: 12, minute: 00, second: 00, of: calendar.startOfDay(for: deadline	))
-	//	calendar.date(bySettingHour: 12, minute: 00, second: 00, of: calendar.startOfDay(for: now	))
-	//	print("The Deadline is : \(deadline)")
-	//	let difference = calendar.dateComponents([.day], from: now, to: deadline)
-	//	print("The difference is \(difference) days")
-	//	self.Days = difference.day! ?? 0
 		
 		
 		

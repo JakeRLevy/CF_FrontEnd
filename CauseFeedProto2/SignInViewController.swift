@@ -189,9 +189,10 @@ class SignInViewController: UIViewController, UIScrollViewDelegate, UITextFieldD
 	@objc func keyboardWillShow(_ notification:NSNotification){
 		
 		var userInfo = notification.userInfo ?? [:]
-		let keyboardFrame:CGRect = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+		let keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
+		let screenSize = UIScreen.main.bounds
 		
-		let adjustment = (keyboardFrame.height + 20)
+		let adjustment: CGFloat = ((keyboardFrame.size.height) - 20 )
 		self.SIScroll.contentInset.bottom += adjustment
 		self.SIScroll.scrollIndicatorInsets.bottom += adjustment
 		//
@@ -202,7 +203,6 @@ class SignInViewController: UIViewController, UIScrollViewDelegate, UITextFieldD
 	@objc func keyboardWillHide(_ notification:NSNotification){
 		var userInfo = notification.userInfo ?? [:]
 		let keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
-		let adjustment = -(keyboardFrame.height + 20)
 		
 		//let adjustment = UIEdgeInsets(top: 0, left: 0, bottom: keyboardFrame.height, right: 0)
 		/*let mySubViews = self.view.subviews
@@ -210,8 +210,8 @@ class SignInViewController: UIViewController, UIScrollViewDelegate, UITextFieldD
 		for view in mySubViews{
 		rect = rect.union(view.frame)
 		}*/
-		self.SIScroll.contentInset.bottom += adjustment
-		self.SIScroll.scrollIndicatorInsets.bottom += adjustment
+		self.SIScroll.contentInset  = UIEdgeInsets.zero
+		self.SIScroll.scrollIndicatorInsets = UIEdgeInsets.zero
 	}
 	
 	@IBAction func hideKeyboard(_ sender: AnyObject) {

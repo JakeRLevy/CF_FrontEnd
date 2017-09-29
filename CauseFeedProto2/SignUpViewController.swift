@@ -29,7 +29,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate,UITextViewDele
 	@IBOutlet weak var UNameError: UILabel!
 	@IBOutlet weak var PassError: UILabel!
 	@IBOutlet weak var ConfirmError: UILabel!
-	//var allFieldsFilled: Bool!
+	var allFieldsFilled: Bool = false
 	
 	
 	/*The List of possible Errors that may occur */
@@ -92,14 +92,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate,UITextViewDele
 		
 		
 		
-		//SuScroll.areAllFields(filled: false)
-		
-	/*	if (FName.isSelected == true){
-		
-			NameError.isHidden = false
-			self.view.addSubview(NameError)
-		
-		}*/
 	}
 	
 	    override func didReceiveMemoryWarning() {
@@ -110,13 +102,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate,UITextViewDele
 	@IBAction func hideKeyboard(_ sender: AnyObject) {
 	FName.endEditing(true)
 	}
-	/*
-	@objc func keyboardWillChange(_ notification: NSNotification){
-		var userInfo = notification.userInfo ?? [:]
-		
-		
-
-	}*/
+	
 
 	@objc func keyboardWillShow(_ notification:NSNotification){
 		
@@ -403,71 +389,71 @@ func textFieldShouldEndEditing( _ textField:
 	
 	
 	@IBAction func DidPressSignUp(_ sender: UIButton) {
-	/*	let trimmedFname = FName.text!.stringTrimFrontandBackWhiteSpace()
-		var result  =  true
-		var nameResult: Bool
-		do {
-			nameResult = try isNameValid(trimmedFname)
-			print ("NAME CHECKING")
-		} catch errorList.nameTooShort{
-			NameError.isHidden = false
-			nameResult = false
-		} catch errorList.nameTooLong {
-			NameError.isHidden = false
-			nameResult = false
-		} catch {
-			//display an UNKNOWN ERROR alert
-			nameResult = false
-		}
-	
-		if (nameResult == false){
-			result = false
-		}
-		
-		if (result == true){
-			self.performSegue(withIdentifier: "SU2First", sender: self)
+		let jsonBody: [String: Any]
+ 		if (self.Email.hasText && self.Password.hasText && self.UName.hasText && self.ConfirmPass.hasText && self.Password.hasText)
+		{
+			let email  = self.Email.text
+			let password  = self.Password.text
+			let userName = self.UName.text
+			let FullName = self.FName.text
+			//let Confirm = self.ConfirmPass.text
 
+	
+			self.allFieldsFilled = true
+		
+		 jsonBody = ["email": email,
+		             "password": password,
+					 "name": FullName,
+					 "username": userName]
+			
+			
+		
+			self.performSegue(withIdentifier: "SU2First", sender: nil)
+
+			
+		}
+		else {
+			var message: String = ""
+			if (!Email.hasText){
+				message += "Email Missing"
+			}
+			if (!Password.hasText){
+				message += "\nPassword Missing"
+			}
+			if (!UName.hasText){
+				message += "\nUserName Missing"
+			}
+			if(!FName.hasText){
+				message += "\nName Missing"
+			}
+			if (!ConfirmPass.hasText){
+				message += "\nPassword Confirmation Missing"
+			}
+			
+			let alert = UIAlertController(title: "Missing Field!", message: message, preferredStyle: .alert)
+			let dismiss = UIAlertAction(title: "Dismiss", style: .destructive, handler: { (action) -> Void in })
+			alert.addAction(dismiss)
+			present(alert, animated: true, completion: nil)
+		}
 		
 		
 		
+		/*{
+		"email" : "<email>",
+		"name": "<name>",
+		"username": "<username>",
+		"password" : "<password>"
 		}*/
-		
+	}
+	override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+		print("SHOULD PERFORM SEGUE?")
+		if (self.allFieldsFilled == false){
+			return false
+		}
+		else{
+			return true
+		}
 	}
 	
 }
 
-
-/*TrimFrontandBackWhiteSpace
-Purpose: Extends the string class with a function that uses regexes to trim only the leading and trailing whitespace of a string.  Primarily used to prepare user submitted strings for analysis.
-Because
-Adapted from code found at https://www.raywenderlich.com/86205/nsregularexpression-swift-tutorial
-
-Author: Jake Levy */
-/*extension String{
-	func stringTrimFrontandBackWhiteSpace()-> String{
-		let frontBackWspace = "(?:^\\s+)|(?:\\s+$)"
-		let testRegEx =  try? NSRegularExpression(pattern: frontBackWspace, options: .caseInsensitive)
-		if (testRegEx == nil){
-			print("error!")
-			return self
-		}
-
-		let range = NSMakeRange(0, self.characters.count)
-		let trimmedString = testRegEx?.stringByReplacingMatches(in: self, options: .reportProgress, range: range, withTemplate: "")
-		return trimmedString!
-
-	}
-
-}
-//Taken from https://stackoverflow.com/questions/27028617/using-next-as-a-return-key
-	private var kAssociationKeyNextField: UInt8 = 0
-extension UITextField {
-	@IBOutlet var nextField: UITextField? {
-		get {
-			return objc_getAssociatedObject(self, &kAssociationKeyNextField) as? UITextField
-		}
-		set(newField) {
-			objc_setAssociatedObject(self, &kAssociationKeyNextField, newField, .OBJC_ASSOCIATION_RETAIN)
-		}
-	}
-}*/
