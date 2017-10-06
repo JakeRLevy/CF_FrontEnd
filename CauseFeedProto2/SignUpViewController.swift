@@ -22,7 +22,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate,UITextViewDele
 	@IBOutlet weak var UName: UITextField!
 	@IBOutlet weak var Password: UITextField!
 	@IBOutlet weak var ConfirmPass: UITextField!
-	
+	var signUpRequestSuccessful = false;
 	/*Error Message TextView Outlets*/
 	@IBOutlet weak var NameError: UILabel!
 	@IBOutlet weak var EmailError: UILabel!
@@ -389,7 +389,7 @@ func textFieldShouldEndEditing( _ textField:
 	
 	
 	@IBAction func DidPressSignUp(_ sender: UIButton) {
-		let jsonBody: [String: Any]
+		
  		if (self.Email.hasText && self.Password.hasText && self.UName.hasText && self.ConfirmPass.hasText && self.Password.hasText)
 		{
 			let email  = self.Email.text
@@ -400,17 +400,34 @@ func textFieldShouldEndEditing( _ textField:
 
 	
 			self.allFieldsFilled = true
-		
-		 jsonBody = ["email": email,
-		             "password": password,
-					 "name": FullName,
-					 "username": userName]
 			
-			
-		
-			self.performSegue(withIdentifier: "SU2First", sender: nil)
+			RestAPIManager.makeUserPostRequest(email: email, password: password, FullName: FullName, userName: userName) { (data, response, error) in
+				guard error == nil else{
+					print ("Error: \(String(describing: error?.localizedDescription))")
+					return
+				}
+				
+				guard let data = data else{
+					print("Data is missing")
+					return
+				}
+				
+				
+					let status = response  as? HTTPURLResponse
+					print ("Status: \(String(describing: status))")
+				do{
+					let result = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+					print ("Result -> \(String(describing: result))")
+					//handle result and determine when  segue is allowable by setting boolean flag
+					//self.performSegue(withIdentifier: "SU2First", sender: nil)
 
-			
+				} catch let error{
+					print ("ERROR -> \(String(describing: error.localizedDescription))")
+				}
+			}
+				
+
+		
 		}
 		else {
 			var message: String = ""
@@ -447,7 +464,7 @@ func textFieldShouldEndEditing( _ textField:
 	}
 	override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
 		print("SHOULD PERFORM SEGUE?")
-		if (self.allFieldsFilled == false){
+		if (!self.allFieldsFilled  || !self.signUpRequestSuccessful){
 			return false
 		}
 		else{

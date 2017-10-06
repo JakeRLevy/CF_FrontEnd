@@ -96,7 +96,7 @@ class UserDataObj : NSObject, NSCopying{
 			
 			let value = snapshot.value as? NSDictionary
 			currentData.setUserDataFromSnapShot(value: value)
-			
+			currentData.setDisplayName(name: current.displayName!)
 			//self.curUserData.displayName = (self.curUser.displayName)!
 			//self.userName.text = self.curUserData.displayName
 			
@@ -160,7 +160,9 @@ class UserDataObj : NSObject, NSCopying{
 	
 	//class func
 
-	
+	func setDisplayName(name: String){
+		self.displayName = name
+	}
 	func setUserDataFromSnapShot(value: NSDictionary?){
 		let causes = value?["cause-count"] as? Float ?? -1.0
 		causeCount = Int (causes)
@@ -241,6 +243,8 @@ class CauseModel{
 	func getTitle()->String{
 		return self.Title
 	}
+	
+	
 	class func downloadSingleCause(causeKey: String, causeSupport: Float, completion: @escaping (_ singleCauseData: CauseModel) -> ()){
 		let causeRef  = Database.database().reference().child("causes").child(causeKey)
 		var currentCause: CauseModel = CauseModel()

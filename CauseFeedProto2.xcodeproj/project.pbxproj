@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6C0DB7DCD633690831CB71B1 /* Pods_CauseFeedProto2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D35F57967B29F8FB128F0ED /* Pods_CauseFeedProto2.framework */; };
+		B1048F491F87F75000C1BEDD /* RestAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1048F481F87F75000C1BEDD /* RestAPIManager.swift */; };
 		B10BAE3B1F464CEC0066875C /* GoalCellCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10BAE3A1F464CEC0066875C /* GoalCellCollectionViewCell.swift */; };
 		B10BAE3D1F464FE00066875C /* RaisedViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10BAE3C1F464FE00066875C /* RaisedViewCell.swift */; };
 		B10BAE3F1F4650280066875C /* DaysViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10BAE3E1F4650280066875C /* DaysViewCell.swift */; };
@@ -60,6 +61,7 @@
 		89E0D18F9C208401F56245FC /* Pods_CauseFeedProto2UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CauseFeedProto2UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		965BFD215CA57A294889D290 /* Pods-CauseFeedProto2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CauseFeedProto2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CauseFeedProto2/Pods-CauseFeedProto2.debug.xcconfig"; sourceTree = "<group>"; };
 		9A81A923E5B910A2646432AB /* Pods-CauseFeedProto2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CauseFeedProto2.release.xcconfig"; path = "Pods/Target Support Files/Pods-CauseFeedProto2/Pods-CauseFeedProto2.release.xcconfig"; sourceTree = "<group>"; };
+		B1048F481F87F75000C1BEDD /* RestAPIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestAPIManager.swift; sourceTree = "<group>"; };
 		B10BAE3A1F464CEC0066875C /* GoalCellCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalCellCollectionViewCell.swift; sourceTree = "<group>"; };
 		B10BAE3C1F464FE00066875C /* RaisedViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RaisedViewCell.swift; sourceTree = "<group>"; };
 		B10BAE3E1F4650280066875C /* DaysViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DaysViewCell.swift; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 				B12C190D1F326CAF003B5370 /* MyScroll.swift */,
 				B12C190E1F326CAF003B5370 /* SignInViewController.swift */,
 				B12C190F1F326CAF003B5370 /* SignUpViewController.swift */,
+				B1048F481F87F75000C1BEDD /* RestAPIManager.swift */,
 				B12C19101F326CAF003B5370 /* tabBarViewController.swift */,
 				B12C19111F326CAF003B5370 /* XfadeSegue.swift */,
 				B12C18E01F326B38003B5370 /* SecondViewController.swift */,
@@ -515,6 +518,7 @@
 				B12C19121F326CAF003B5370 /* LoginViewController.swift in Sources */,
 				B12C19151F326CAF003B5370 /* SignUpViewController.swift in Sources */,
 				B12C18E11F326B38003B5370 /* SecondViewController.swift in Sources */,
+				B1048F491F87F75000C1BEDD /* RestAPIManager.swift in Sources */,
 				B12C19141F326CAF003B5370 /* SignInViewController.swift in Sources */,
 				B12C18DD1F326B38003B5370 /* AppDelegate.swift in Sources */,
 				B11E3D661F43C0C900004279 /* BasicTableRow.swift in Sources */,

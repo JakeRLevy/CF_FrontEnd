@@ -190,7 +190,7 @@ class SignInViewController: UIViewController, UIScrollViewDelegate, UITextFieldD
 		
 		var userInfo = notification.userInfo ?? [:]
 		let keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
-		let screenSize = UIScreen.main.bounds
+		//wlet screenSize = UIScreen.main.bounds
 		
 		let adjustment: CGFloat = ((keyboardFrame.size.height) - 20 )
 		self.SIScroll.contentInset.bottom += adjustment

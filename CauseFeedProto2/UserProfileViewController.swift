@@ -317,6 +317,7 @@ class UserProfileViewController: UIViewController, UICollectionViewDelegate, UIC
 		if let currentUser = Auth.auth().currentUser { //if there is a current user
 			self.curUser = currentUser //set the local page variable curUser to the currentUser
 			print ("Current User :  SUCCESS")
+			self.userName.text = self.curUser?.displayName
 		}else{
 			//eventually we can create a "guest" user who will view something other than personal page when not logged in
 			//For now if no current user, we shouldn't be able to view the page so error
@@ -331,8 +332,10 @@ class UserProfileViewController: UIViewController, UICollectionViewDelegate, UIC
 			
 			(userCurrent) in
 			self.curUserData = userCurrent	//store the current user in a class variable so there is only one user
+		
 			self.numRows = userCurrent.causeCount!  //Set the number of rows to the number of causes
-			
+			self.userName.text = self.curUserData.displayName!
+
 			
 			//Now there is a user data object and we know the number of causes so we can create the UserDataArray of Labels for the cell types in a regular pattern as described previously
 			for position in 0..<(userCurrent.causeCount! * 5){
