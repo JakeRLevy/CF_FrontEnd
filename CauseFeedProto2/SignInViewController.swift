@@ -79,6 +79,11 @@ class SignInViewController: UIViewController, UIScrollViewDelegate, UITextFieldD
 			self.performSegue(withIdentifier: "SI2Home", sender: self)
 			//print ("HEEEEYYY")
 		}
+		else{
+			
+			UNtxtField.becomeFirstResponder()
+
+		}
 	}
 	
 	@IBAction func DidTapSI(_ sender: UIButton) {
@@ -118,20 +123,24 @@ class SignInViewController: UIViewController, UIScrollViewDelegate, UITextFieldD
 			print("\nGot here")
 
 			if let email = self.UNtxtField.text, let password = self.PWtxtField.text{
-				Auth.auth().signIn(withEmail: email, password: password, completion: { (user, error) in
+				self.signInUser(withEmail: email, password: password, completion: { (user, error) in
 					if let error = error{
 						self.siEmailErr = true
 						self.EmailSIError.isHidden = false
-						print("\(error.localizedDescription)\n\n")  //change to an Alert
-						return
-					}
-					self.performSegue(withIdentifier: "SI2Home", sender: nil)
+						print("sign in Error from Sign In Page-> \(error.localizedDescription)")
+					} else{
+						self.performSegue(withIdentifier: "SI2Home", sender: nil)
 
+					}
 				})
+			
+			}
+			
+			
 			
 			//if server responds with suthentication error, ask user to re-enter information 
 			
-			}
+			
 		}
 		else {print("\nCHECKED HERE")
 		//remove following line after we add the code
@@ -176,14 +185,13 @@ class SignInViewController: UIViewController, UIScrollViewDelegate, UITextFieldD
 		orLine.image = UIImage(named: "OrLine")*/
 		//SignInButt.setBackgroundImage(UIImage(named: "signInButton"), for: .normal)
 		self.definesPresentationContext = true
-		UNtxtField.becomeFirstResponder()
+	
 		NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name:Notification.Name.UIKeyboardWillShow, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name:Notification.Name.UIKeyboardWillHide, object: nil)
 		UNtxtField.delegate = self
 	/*	NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardNotification(notification:)), name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)*/
 
         // Do any additional setup after loading the view.
-		
     }
 
 	@objc func keyboardWillShow(_ notification:NSNotification){
@@ -204,12 +212,7 @@ class SignInViewController: UIViewController, UIScrollViewDelegate, UITextFieldD
 		var userInfo = notification.userInfo ?? [:]
 		let keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
 		
-		//let adjustment = UIEdgeInsets(top: 0, left: 0, bottom: keyboardFrame.height, right: 0)
-		/*let mySubViews = self.view.subviews
-		var rect: CGRect = CGRect.zero
-		for view in mySubViews{
-		rect = rect.union(view.frame)
-		}*/
+	
 		self.SIScroll.contentInset  = UIEdgeInsets.zero
 		self.SIScroll.scrollIndicatorInsets = UIEdgeInsets.zero
 	}
@@ -221,10 +224,24 @@ class SignInViewController: UIViewController, UIScrollViewDelegate, UITextFieldD
 	deinit {
 		NotificationCenter.default.removeObserver(self)
 	}
+
+//This func will be moved to FirebaseAPIManager Layer
+	func signInUser(withEmail: String, password: String, completion: @escaping (_ user: User?, _ error: Error?) ->  ()) {
+		Auth.auth().signIn(withEmail: withEmail, password: password, completion: { (user, error) in
+			guard error == nil else{
+			
+				return
+			}
+		
+				completion(user, error)
+		
+		
+		})
+	}
 	
 	override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
 		print("SHOULD PERFORM SEGUE?")
-		if (self.siEmailErr == true){
+		if (identifier == "SI2Home" && self.siEmailErr == true){
 			return false
 		}
 		else{

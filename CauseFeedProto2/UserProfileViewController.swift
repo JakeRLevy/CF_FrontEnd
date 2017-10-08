@@ -174,7 +174,9 @@ class UserProfileViewController: UIViewController, UICollectionViewDelegate, UIC
 	
 	 func collectionView(_ collectionView: UICollectionView,
 	                             numberOfItemsInSection section: Int) -> Int {
-		
+		guard (self.numRows > 0) else {
+			 return 5
+		}
 		if (self.numRows >= 1){
 	
 		print("Number of Items in Section called, causes: \(self.numRows * 5)")
@@ -193,11 +195,11 @@ class UserProfileViewController: UIViewController, UICollectionViewDelegate, UIC
 	
 	 func collectionView(_ collectionView: UICollectionView,
 	                             cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-	
+		
 		var currentCause: CauseModel
 		//set a boolean flag to signal when data has been downloaded
 		if (indexPath.item % 5 == 0){
-			if (self.causeFlag){
+			if (self.causeFlag && self.usersCauses.count > 0){
 				currentCause = self.usersCauses[ (indexPath.item / 5) ]
 			}
 			else {
@@ -215,7 +217,7 @@ class UserProfileViewController: UIViewController, UICollectionViewDelegate, UIC
 	
 		}
 		else if (indexPath.item % 5 == 1){
-			if (self.causeFlag){
+			if (self.causeFlag && self.usersCauses.count > 0){
 				currentCause = self.usersCauses[ Int(indexPath.item / 5) ]
 			}
 			else {
@@ -224,7 +226,7 @@ class UserProfileViewController: UIViewController, UICollectionViewDelegate, UIC
 			 let GoalCell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseGoalID,
 			                                                    for: indexPath) as! GoalCellCollectionViewCell
 			GoalCell.textLabel?.text  = String(currentCause.getGoal())
-			GoalCell.frame = CGRect(x: GoalCell.frame.origin.x, y: GoalCell.frame.origin.y, width: personalCauses.frame.width/6, height: 44)
+			GoalCell.frame = CGRect(x: personalCauses.frame.width/3 - 1, y: GoalCell.frame.origin.y, width: personalCauses.frame.width/6, height: 44)
 	
 			GoalCell.layer.borderWidth = 1
 			GoalCell.layer.borderColor = UIColor.black.cgColor
@@ -232,7 +234,7 @@ class UserProfileViewController: UIViewController, UICollectionViewDelegate, UIC
 		
 		}
 			else if (indexPath.item % 5 == 2){
-			if (self.causeFlag){
+			if (self.causeFlag && self.usersCauses.count > 0){
 				currentCause = self.usersCauses[ Int(indexPath.item / 5) ]
 			}
 			else {
@@ -241,14 +243,14 @@ class UserProfileViewController: UIViewController, UICollectionViewDelegate, UIC
 			let RaisedCell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseRaisedID,
 			                                                    for: indexPath) as! RaisedViewCell
 			RaisedCell.textLabel.text  = String(currentCause.getRaised())
-			RaisedCell.frame = CGRect(x: RaisedCell.frame.origin.x, y: RaisedCell.frame.origin.y, width: personalCauses.frame.width/6, height: 44)
+			RaisedCell.frame = CGRect(x: ((personalCauses.frame.width/2) - 1), y: RaisedCell.frame.origin.y, width: personalCauses.frame.width/6, height: 44)
 			
 			RaisedCell.layer.borderWidth = 1
 			RaisedCell.layer.borderColor = UIColor.black.cgColor
 			return RaisedCell
 		}
 		else if (indexPath.item % 5 == 3){
-			if (self.causeFlag){
+			if (self.causeFlag && self.usersCauses.count > 0){
 				currentCause = self.usersCauses[ Int(indexPath.item / 5) ]
 			}
 			else {
@@ -258,7 +260,7 @@ class UserProfileViewController: UIViewController, UICollectionViewDelegate, UIC
 			                                                    for: indexPath) as! DaysViewCell
 			//have to finish working with date formatter to complete
 			DaysCell.textLabel?.text  = "Days"
-			DaysCell.frame = CGRect(x: DaysCell.frame.origin.x, y: DaysCell.frame.origin.y, width: personalCauses.frame.width/6, height: 44)
+			DaysCell.frame = CGRect(x: ((personalCauses.frame.width/6) *  4 - 1), y: DaysCell.frame.origin.y, width: personalCauses.frame.width/6, height: 44)
 			
 			// Configure the cell
 			//cell = DaysCell
@@ -267,7 +269,7 @@ class UserProfileViewController: UIViewController, UICollectionViewDelegate, UIC
 			return DaysCell
 		}
 		else /*if (indexPath.item % 5 == 4)*/{
-			if (self.causeFlag){
+			if (self.causeFlag && self.usersCauses.count > 0){
 				currentCause = self.usersCauses[ Int(indexPath.item / 5) ]
 			}
 			else {
@@ -277,7 +279,7 @@ class UserProfileViewController: UIViewController, UICollectionViewDelegate, UIC
 			                                                    for: indexPath) as! SupportViewCell
 			SupportCell.textLabel.numberOfLines = 5
 			SupportCell.textLabel?.text  = String(currentCause.getMySup())
-			SupportCell.frame = CGRect(x: SupportCell.frame.origin.x, y: SupportCell.frame.origin.y, width: personalCauses.frame.width/6, height: 44)
+			SupportCell.frame = CGRect(x:( (personalCauses.frame.width/6) *  5 - 1), y: SupportCell.frame.origin.y, width: personalCauses.frame.width/6, height: 44)
 			// Configure the cell
 			//cell = SupportCell
 			SupportCell.layer.borderWidth = 1
@@ -333,7 +335,7 @@ class UserProfileViewController: UIViewController, UICollectionViewDelegate, UIC
 			(userCurrent) in
 			self.curUserData = userCurrent	//store the current user in a class variable so there is only one user
 		
-			self.numRows = userCurrent.causeCount!  //Set the number of rows to the number of causes
+			self.numRows = userCurrent.causeCount ?? 0  //Set the number of rows to the number of causes
 			self.userName.text = self.curUserData.displayName!
 
 			

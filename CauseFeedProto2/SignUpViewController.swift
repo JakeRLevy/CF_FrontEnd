@@ -5,7 +5,7 @@
 //  Created by Jacob Levy on 6/24/17.
 //  Copyright © 2017 Jacob Levy. All rights reserved.
 //
-
+import FirebaseAuth
 import UIKit
 
 class SignUpViewController: UIViewController, UITextFieldDelegate,UITextViewDelegate, UIGestureRecognizerDelegate {
@@ -22,6 +22,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate,UITextViewDele
 	@IBOutlet weak var UName: UITextField!
 	@IBOutlet weak var Password: UITextField!
 	@IBOutlet weak var ConfirmPass: UITextField!
+	var selectedField: UITextField = UITextField()
+	
 	var signUpRequestSuccessful = false;
 	/*Error Message TextView Outlets*/
 	@IBOutlet weak var NameError: UILabel!
@@ -29,8 +31,16 @@ class SignUpViewController: UIViewController, UITextFieldDelegate,UITextViewDele
 	@IBOutlet weak var UNameError: UILabel!
 	@IBOutlet weak var PassError: UILabel!
 	@IBOutlet weak var ConfirmError: UILabel!
+	var message: String = ""
+	//flag indicating ALL fields are filled correctly
 	var allFieldsFilled: Bool = false
+	//flag for checking individual text fields for correctness
 	
+	var matchCheck = false
+	var nameCheck = false
+	var emailCheck = false
+	var uNameCheck = false
+	var PwordCheck = false
 	
 	/*The List of possible Errors that may occur */
 	enum errorList: Error{
@@ -275,8 +285,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate,UITextViewDele
 	}
 
 //need to move this logic to the signup button
-func textFieldShouldEndEditing( _ textField:
-	UITextField) -> Bool {
+func textFieldDidEndEditing( _ textField:
+	UITextField)  {
 	print("SHOULD END EDITING CALLED")
 
 	let currentText = textField.text
@@ -288,8 +298,11 @@ func textFieldShouldEndEditing( _ textField:
 		do {
 			result = try isNameValid(trimmedText!)
 			print("Checked FNAME with result: \(result)")
-
-			return result
+			if (result){
+				self.nameCheck = true
+				print("Set namecheck")
+			}
+			//return result
 
 		} catch errorList.nameTooShort {
 			NameError.isHidden = false
@@ -301,13 +314,19 @@ func textFieldShouldEndEditing( _ textField:
 			NameError.isHidden = false
 		} catch {
 			//display an UNKNOWN ERROR alert
-			print("ERROR LINE 266")
+			
+			print("Some Error with Name Validation, Result -> \(result)")
 		}
 	}
 	else if (textField.tag == 2){
 		do{
 			print("Checked EMAIL")
 			result = try isEmailValid(trimmedText!)
+			
+			if (result){
+				self.emailCheck = true
+				print("Email Check is \(result)")
+			}
 		} catch errorList.emailTooShort{
 			EmailError.isHidden = false//Display Error
 		} catch errorList.emailTooLong{
@@ -316,12 +335,16 @@ func textFieldShouldEndEditing( _ textField:
 			EmailError.isHidden = false
 		} catch {
 			//display an UNKNOWN ERROR alert
+				print("Some Error with Email Validation, Result -> \(result)")
 		}
 	}
 	else if (textField.tag == 3){
 		do{
 			print("Checked UName")
 			result = try isValidUserName(trimmedText!)
+			if (result){
+				self.uNameCheck = true
+			}
 		} catch errorList.nameTooShort{
 			UNameError.isHidden = false
 		} catch errorList.nameTooLong{
@@ -330,6 +353,9 @@ func textFieldShouldEndEditing( _ textField:
 			UNameError.isHidden = false
 		} catch {
 			//display unknown error alert
+			
+			print("Some Error with UserName Validation, Result -> \(result)")
+
 		}
 	}
 	
@@ -337,16 +363,22 @@ func textFieldShouldEndEditing( _ textField:
 		do{
 			print("Checked Password")
 			result = try isPasswordValid(trimmedText!)
+			if (result){
+				self.PwordCheck = true
+			}
 		} catch errorList.passTooShort{
 			PassError.isHidden = false
 		} catch errorList.passNotMatchRegex{
 			PassError.isHidden = false
 		} catch {
 			//UNKNOWN ERROR
+			print("Some Error with Password Validation, Result -> \(result)")
+
 		}
 	}
 	
 	else if (textField.tag == 5){
+		
 		let original = Password.text?.stringTrimFrontandBackWhiteSpace()
 		
 		if (original == nil){
@@ -354,48 +386,89 @@ func textFieldShouldEndEditing( _ textField:
 		}
 			do{
 				result = try doPasswordsMatch(original!, confirm: trimmedText!)
+				if (result){
+					self.matchCheck = true
+					print("RESULT MATCH ->: \(result)")
+				}
+		
 			}
 			 catch errorList.passNotConfirmed{
 				ConfirmError.isHidden = false
 				//self.view.addSubview(ConfirmError)
 				//UNKNOWN ERROR
 			}	catch{
-				
+				print("Some Error with Confirmation Validation, Result -> \(result)")
+
 		}
 		}
-	
-		return result
+	//legacy code
+		//return result
 	}
 	
-	func textFieldDidEndEditing(_ textField: UITextField) {
+	func textFieldDidBeginEditing(_ textField: UITextField) {
+		selectedField = textField
 		if (textField.tag == 1){
-			NameError.isHidden = true
+			if (!NameError.isHidden){
+				NameError.isHidden = true
+			}
 		}
 		if (textField.tag == 2){
-			EmailError.isHidden = true
+			if (!EmailError.isHidden){
+				EmailError.isHidden = true
+			}
 		}
 		if (textField.tag == 3){
+			if (!UNameError.isHidden){
 			UNameError.isHidden = true
+			}
 		}
 		if (textField.tag == 4) {
+			if (!PassError.isHidden){
 			PassError.isHidden = true
+			}
 		}
 	
 		if (textField.tag == 5){
+			if (!ConfirmError.isHidden){
 			ConfirmError.isHidden = true
+			}
 		}
 		
 	}
 	
 	
 	@IBAction func DidPressSignUp(_ sender: UIButton) {
+		//self.SignUpButton.becomeFirstResponder()
+		for view in self.view.subviews as [UIView]{
+			if let textField = view as? UITextField{
+				if (textField.isFirstResponder){
+					self.resignFirstResponder()
+					self.textFieldDidEndEditing(textField)
+					self.SignUpButton.becomeFirstResponder()
+				}
+			}
+		}
+		let original = Password.text?.stringTrimFrontandBackWhiteSpace()
+		let confirm  = ConfirmPass.text?.stringTrimFrontandBackWhiteSpace()
 		
- 		if (self.Email.hasText && self.Password.hasText && self.UName.hasText && self.ConfirmPass.hasText && self.Password.hasText)
+		//For some reason Did end editing is not called on the currently selected textfield no matter what i try so i will
+		//have to add a check for all fields in this method.   Added a currently selected field value so we can loop and 
+		//look for the currently selected field and check based on that. for now, only checking if passwords match cause that is the most likely last fields interacted with
+		do{
+			let result: Bool = try doPasswordsMatch(original!, confirm: confirm!)
+			if (result){
+				self.matchCheck = true
+			}
+		} catch{
+			print("TESTYTESTYESY")
+		}
+		message = ""
+ 		if (self.nameCheck && self.PwordCheck && self.uNameCheck && self.matchCheck && self.emailCheck)
 		{
-			let email  = self.Email.text
-			let password  = self.Password.text
-			let userName = self.UName.text
-			let FullName = self.FName.text
+			let email  = self.Email.text!
+			let password  = self.Password.text!
+			let userName = self.UName.text!
+			let FullName = self.FName.text!
 			//let Confirm = self.ConfirmPass.text
 
 	
@@ -415,6 +488,25 @@ func textFieldShouldEndEditing( _ textField:
 				
 					let status = response  as? HTTPURLResponse
 					print ("Status: \(String(describing: status))")
+				if status?.statusCode == 201{
+					self.signInUser(withEmail: email, password: password, completion: { (user, error) in
+						if let error = error{
+						print("Sign Up Page Sign In Error -> \(String(describing: error.localizedDescription))")
+						/*	 self.message = "\(String(describing: error.localizedDescription))"
+							let SignInalert = UIAlertController(title: "Error!", message: self.message, preferredStyle: .alert)
+							let dismiss = UIAlertAction(title: "Dismiss", style: .destructive, handler: { (action) -> Void in })
+							SignInalert.addAction(dismiss)
+							self.present(SignInalert, animated: true, completion: nil)*/
+							return
+							
+						}
+							self.signUpRequestSuccessful = true
+							self.performSegue(withIdentifier: "SU2First", sender: nil)
+						
+					})
+				
+				}
+				
 				do{
 					let result = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
 					print ("Result -> \(String(describing: result))")
@@ -424,27 +516,49 @@ func textFieldShouldEndEditing( _ textField:
 				} catch let error{
 					print ("ERROR -> \(String(describing: error.localizedDescription))")
 				}
+				
+				
 			}
 				
-
-		
 		}
+		
+		
 		else {
-			var message: String = ""
-			if (!Email.hasText){
-				message += "Email Missing"
+	//if the field text is missing we do not want both errors to occur
+			// so if we fail, Either text is MISSING or Something wrong was entered
+			if (!self.Email.hasText){
+				self.message += "Email Missing"
 			}
-			if (!Password.hasText){
-				message += "\nPassword Missing"
+			else if (!self.emailCheck && (self.selectedField != Email)){
+				self.message += "Something Wrong with Email"
+				self.Email.isHighlighted = true
+			}
+			if (!self.Password.hasText){
+				self.message += "\nPassword Missing"
+			}
+			else{
+				if (!self.PwordCheck && (self.selectedField != Password))  {
+					self.message += "\nSomething wrong with Password"
+				}
+				if (!self.matchCheck && (self.selectedField != ConfirmPass)) {
+					self.message += "\nSomething went wrong confirming Password"
+
+				}
 			}
 			if (!UName.hasText){
-				message += "\nUserName Missing"
+				self.message += "\nUserName Missing"
+			}
+			else if (!self.uNameCheck && (self.selectedField != UName)){
+				self.message += "\nSomething wrong with User Name"
 			}
 			if(!FName.hasText){
-				message += "\nName Missing"
+				self.message += "\nName Missing"
+			}
+			else if(!self.nameCheck && (self.selectedField != FName)){
+				self.message += "\nSomething is wrong with the Entered Name"
 			}
 			if (!ConfirmPass.hasText){
-				message += "\nPassword Confirmation Missing"
+				self.message += "\nPassword Confirmation Missing"
 			}
 			
 			let alert = UIAlertController(title: "Missing Field!", message: message, preferredStyle: .alert)
@@ -464,13 +578,28 @@ func textFieldShouldEndEditing( _ textField:
 	}
 	override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
 		print("SHOULD PERFORM SEGUE?")
-		if (!self.allFieldsFilled  || !self.signUpRequestSuccessful){
+		if ( identifier == "SU2First" && (!self.allFieldsFilled  || !self.signUpRequestSuccessful)){
+			print("SignUp Success: \(self.signUpRequestSuccessful)")
 			return false
 		}
 		else{
 			return true
 		}
 	}
+	
+	func signInUser(withEmail: String, password: String, completion: @escaping (_ user: User?, _ error: Error?) ->  ()) {
+		Auth.auth().signIn(withEmail: withEmail, password: password, completion: { (user, error) in
+			guard error == nil else{
+				
+				return
+			}
+			
+			completion(user, error)
+			
+			
+		})
+	}
+	
 	
 }
 
