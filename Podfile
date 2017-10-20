@@ -8,6 +8,7 @@ target 'CauseFeedProto2' do
 	pod ‘Firebase/Storage’
 	pod 'Firebase/Database'
 	pod ‘SwiftKeychainWrapper’
+	pod 'Koloda', '~>4.1'
 #frameworks
   use_frameworks!
  

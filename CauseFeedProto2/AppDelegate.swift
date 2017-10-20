@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		FirebaseApp.configure()
 
 		UITabBar.appearance().barTintColor = myAdjGreen
-	
+		
 		UINavigationBar.appearance().setBackgroundImage(UIImage(named: "CauseFeedNavBG"), for: .default)
 		
 		return true

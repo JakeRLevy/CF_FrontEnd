@@ -133,11 +133,6 @@
       "scale" : "2x"
     },
     {
-      "idiom" : "ios-marketing",
-      "size" : "1024x1024",
-      "scale" : "1x"
-    },
-    {
       "size" : "60x60",
       "idiom" : "car",
       "filename" : "Icon-60@2x.png",
@@ -255,6 +250,11 @@
       "idiom" : "mac",
       "filename" : "Icon-512@2x.png",
       "scale" : "2x"
+    },
+    {
+      "idiom" : "ios-marketing",
+      "size" : "1024x1024",
+      "scale" : "1x"
     },
     {
       "filename" : "Icon-57@3x.png",

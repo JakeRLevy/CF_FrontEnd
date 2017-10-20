@@ -9,7 +9,7 @@ import FirebaseAuth
 import UIKit
 
 class SignUpViewController: UIViewController, UITextFieldDelegate,UITextViewDelegate, UIGestureRecognizerDelegate {
-	weak var signIn: SignInViewController!
+//	weak var signIn: SignInViewController!
 
 	@IBOutlet weak var SignUpButton: UIButton!
 	@IBOutlet var keyboardHeightLayoutConstraint: NSLayoutConstraint?

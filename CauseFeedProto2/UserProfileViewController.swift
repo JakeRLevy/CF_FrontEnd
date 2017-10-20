@@ -330,6 +330,7 @@ class UserProfileViewController: UIViewController, UICollectionViewDelegate, UIC
 		
 		//Completion handler that is used in the loadCurrentUserData Function
 		//The following code does not run until the data has come back from the asynchronous Firebase Call
+		if let existingUD = self.curUser{
 		UserDataObj.loadCurrentUserData {
 			
 			(userCurrent) in
@@ -438,12 +439,12 @@ class UserProfileViewController: UIViewController, UICollectionViewDelegate, UIC
 			
 		
 		}
-	
+		}
 		
 	}
 
 
-		
+	
 	
 	//Not used
 	func isThereAUser(Count: Int) -> Void{
@@ -465,6 +466,42 @@ class UserProfileViewController: UIViewController, UICollectionViewDelegate, UIC
 			
 		} catch let signOutError as NSError {
 			print ("Error signing out of app: %@", signOutError)
+		}
+	}
+	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+		print("Selected item: \(indexPath.item)")
+		if indexPath.item % 5 == 0
+		{
+			performSegue(withIdentifier: "toCausePageDest", sender: indexPath.item )
+		}
+	}
+	//called by iOS to prepare data for the next View
+	//in this case we are primarily concerned with preparing to segue to a specific Cause pageView
+	//whose data is set by this method
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		var current: CauseModel?
+		
+		if let itemNum = sender as? Int{
+			let causePos = itemNum / 5
+			current  = usersCauses[causePos]
+			
+		
+		if segue.identifier == "toCausePageDest"{
+			print("The item generating this segue is a Cause Cell")
+			let destVC: CausePageViewViewController  = segue.destination as! CausePageViewViewController
+			destVC.causeKey = (current?.getName())!
+			destVC.currentTitle = (current?.getTitle())!
+			destVC.currentDescription = (current?.getDesc())!
+			destVC.goal = (current?.getGoal())!
+			destVC.raised = (current?.getRaised())!
+			return
+		}
+		}
+		else{
+			
+			print("The item generating the segue is NOT a Cause Cell")
+			
+			return
 		}
 	}
 	override func viewWillDisappear(_ animated: Bool) {

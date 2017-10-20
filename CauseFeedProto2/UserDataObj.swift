@@ -244,6 +244,9 @@ class CauseModel{
 		return self.Title
 	}
 	
+	func getDesc()-> String{
+		return self.description!
+	}
 	
 	class func downloadSingleCause(causeKey: String, causeSupport: Float, completion: @escaping (_ singleCauseData: CauseModel) -> ()){
 		let causeRef  = Database.database().reference().child("causes").child(causeKey)

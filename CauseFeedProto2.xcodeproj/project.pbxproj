@@ -15,6 +15,7 @@
 		B10BAE411F4650420066875C /* SupportViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10BAE401F4650420066875C /* SupportViewCell.swift */; };
 		B10EC2A41F56749B0023E8B2 /* UserDataObj.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10EC2A31F56749B0023E8B2 /* UserDataObj.swift */; };
 		B115D22CCAB537E774F4CA8F /* Pods_CauseFeedProto2UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89E0D18F9C208401F56245FC /* Pods_CauseFeedProto2UITests.framework */; };
+		B116AA3E1F9854C200FC11E3 /* CausePageViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B116AA3D1F9854C200FC11E3 /* CausePageViewViewController.swift */; };
 		B11E3D641F43961D00004279 /* typicalViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11E3D631F43961D00004279 /* typicalViewCell.swift */; };
 		B11E3D661F43C0C900004279 /* BasicTableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11E3D651F43C0C900004279 /* BasicTableRow.swift */; };
 		B12C18DD1F326B38003B5370 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12C18DC1F326B38003B5370 /* AppDelegate.swift */; };
@@ -67,6 +68,7 @@
 		B10BAE3E1F4650280066875C /* DaysViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DaysViewCell.swift; sourceTree = "<group>"; };
 		B10BAE401F4650420066875C /* SupportViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SupportViewCell.swift; sourceTree = "<group>"; };
 		B10EC2A31F56749B0023E8B2 /* UserDataObj.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDataObj.swift; sourceTree = "<group>"; };
+		B116AA3D1F9854C200FC11E3 /* CausePageViewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CausePageViewViewController.swift; sourceTree = "<group>"; };
 		B11E3D631F43961D00004279 /* typicalViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = typicalViewCell.swift; sourceTree = "<group>"; };
 		B11E3D651F43C0C900004279 /* BasicTableRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BasicTableRow.swift; path = ../BasicTableRow.swift; sourceTree = "<group>"; };
 		B12C18D91F326B38003B5370 /* CauseFeedProto2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CauseFeedProto2.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -177,6 +179,7 @@
 				B16924321F344DBA00B9973C /* UserProfileViewController.swift */,
 				B10EC2A31F56749B0023E8B2 /* UserDataObj.swift */,
 				B12C18E21F326B39003B5370 /* Main.storyboard */,
+				B116AA3D1F9854C200FC11E3 /* CausePageViewViewController.swift */,
 				B11E3D631F43961D00004279 /* typicalViewCell.swift */,
 				B10BAE3A1F464CEC0066875C /* GoalCellCollectionViewCell.swift */,
 				B10BAE3C1F464FE00066875C /* RaisedViewCell.swift */,
@@ -519,6 +522,7 @@
 				B12C19151F326CAF003B5370 /* SignUpViewController.swift in Sources */,
 				B12C18E11F326B38003B5370 /* SecondViewController.swift in Sources */,
 				B1048F491F87F75000C1BEDD /* RestAPIManager.swift in Sources */,
+				B116AA3E1F9854C200FC11E3 /* CausePageViewViewController.swift in Sources */,
 				B12C19141F326CAF003B5370 /* SignInViewController.swift in Sources */,
 				B12C18DD1F326B38003B5370 /* AppDelegate.swift in Sources */,
 				B11E3D661F43C0C900004279 /* BasicTableRow.swift in Sources */,
