@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "GreenHeart.png",
+      "filename" : "Donate.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "GreenHeart@2x.png",
+      "filename" : "Donate@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "GreenHeart@3x.png",
+      "filename" : "Donate@3x.png",
       "scale" : "3x"
     }
   ],
