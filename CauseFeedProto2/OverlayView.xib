@@ -9,9 +9,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="myOverlayView" customModule="CauseFeedProto2" customModuleProvider="target"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ExampleOverlayView" customModule="Koloda_Example">
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="myOverlayView" customModule="CauseFeedProto2" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -27,8 +27,9 @@
                 <constraint firstAttribute="bottom" secondItem="nSH-Wk-A2T" secondAttribute="bottom" id="haI-fQ-N7j"/>
             </constraints>
             <connections>
-                <outlet property="overlayImageView" destination="nSH-Wk-A2T" id="DdO-hO-Jj4"/>
+                <outlet property="overlayIMG2" destination="nSH-Wk-A2T" id="nSV-Bf-AiO"/>
             </connections>
+            <point key="canvasLocation" x="-78" y="-5"/>
         </view>
     </objects>
 </document>

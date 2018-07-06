@@ -21,7 +21,7 @@ class UserDataObj : NSObject, NSCopying{
 	 var Donated2CausesDict: Dictionary? = [String : [String : Float]]()
 	 var donatedTotal: Float?
 	 var swipeAmt: Float?
-	 var info: Dictionary? = [String : [String : String]]()
+		var info: Dictionary? = [String : [String : String]]()
 	
 	required override init(){
 		super.init()
@@ -103,7 +103,7 @@ class UserDataObj : NSObject, NSCopying{
 			//self.userName.text
 			if let numCauses = currentData.causeCount{
 				//self.TotalCauses.text = "\(numCauses)"
-				print("Current User # of Causes: \(numCauses)")
+				//print("Current User # of Causes: \(numCauses)")
 			}
 			else{
 				//self.TotalCauses.text = "Error Line 73"
@@ -112,19 +112,19 @@ class UserDataObj : NSObject, NSCopying{
 			
 			if let totalDonations = currentData.donatedTotal{
 				//self.totalDonated.text = "\(totalDonations)"
-				print("Current User Total Donations: \(totalDonations)")
+			//	print("Current User Total Donations: \(totalDonations)")
 
 			}
 			else{
 				//self.totalDonated.text = "ERROR Line 80"
-				print("Current User Total Donations: Error Line 80")
+			//	print("Current User Total Donations: Error Line 80")
 
 			}
 			
 			
 			if let fundAmt = currentData.swipeAmt{
 				//self.swipeAmt.text = "\(fundAmt)"
-				print("Current User Donation: \(fundAmt)")
+				print("DON'T FORGET TO REMOVE METHOD LOADCURRENTUSERDATA AND ALL CALLS")
 
 			}
 			else{
@@ -136,7 +136,7 @@ class UserDataObj : NSObject, NSCopying{
 			
 			if let balance = currentData.balance{
 				//self.Remaining.text = "\(balance)"
-				print("Current User Balance: \(balance)")
+				//print("Current User Balance: \(balance)")
 
 			}else{
 				//self.swipeAmt.text = "Error Line 95"
@@ -274,12 +274,17 @@ class CauseModel{
 		self.Title = value?["title"] as? String ?? "No Title"
 		print("Goal: \(self.Goal)")
 		print ("Deadline : \(value?["deadline"] as? String)")
-		
-		
-		
-		
-		
 		self.Raised = value?["raised"] as? Float ?? 0000
 		
+	}
+	//sets cause data for causes downloaded via the Swipe Page, thus the individual support from the User should be 0
+	func setCauseDataFromSnapShot(name: String, value: NSDictionary?){
+		self.name  = name
+		self.description = (value?["description"] as? String ?? "Missing Description")!
+		self.Goal = value?["goal"] as? Float ?? -1000.0
+		self.Title = value?["title"] as? String ?? "No Title"
+		self.Support = 0
+		self.Raised = value?["raised"] as? Float ?? 0000
+
 	}
 }

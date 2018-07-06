@@ -15,7 +15,7 @@ class tabBarViewController: UITabBarController {
 
 		
 		//Code to render the unselected images in the tab bar
-
+		
 		for items in 0 ..< tabBar.items!.count {
 			let tabItemIndex = tabBar.items![items]
 			tabItemIndex.image = tabItemIndex.image!.withRenderingMode(UIImageRenderingMode.alwaysOriginal)

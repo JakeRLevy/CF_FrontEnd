@@ -9,6 +9,7 @@ target 'CauseFeedProto2' do
 	pod 'Firebase/Database'
 	pod ‘SwiftKeychainWrapper’
 	pod 'Koloda', '~>4.1'
+	pod 'BraintreeDropIn'
 #frameworks
   use_frameworks!
  

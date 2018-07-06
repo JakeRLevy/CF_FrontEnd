@@ -16,8 +16,12 @@ class SupportViewCell: UICollectionViewCell {
 		super.init(frame: frame)
 		/*self.frame = CGRect(x: self.frame.origin.x, y: self.frame.origin.y, width: 60, height: 44)*/
 		textLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height))
-		textLabel.font = UIFont.systemFont(ofSize: 12.0)
+		textLabel.font = UIFont.systemFont(ofSize: 13.0)
 		textLabel.textAlignment = .center
+		textLabel.numberOfLines = 0
+		textLabel.adjustsFontSizeToFitWidth = true
+		textLabel.minimumScaleFactor = 0.1
+
 		contentView.addSubview(textLabel)
 	}
 	

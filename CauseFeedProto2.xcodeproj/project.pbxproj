@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		6C0DB7DCD633690831CB71B1 /* Pods_CauseFeedProto2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D35F57967B29F8FB128F0ED /* Pods_CauseFeedProto2.framework */; };
 		B1048F491F87F75000C1BEDD /* RestAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1048F481F87F75000C1BEDD /* RestAPIManager.swift */; };
+		B105F2861FB4A444009B7E8E /* OverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B105F2851FB4A444009B7E8E /* OverlayView.xib */; };
+		B105F2881FB51767009B7E8E /* myOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B105F2871FB51767009B7E8E /* myOverlayView.swift */; };
+		B10827491FA1820A00D961AD /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10827481FA1820A00D961AD /* FirebaseManager.swift */; };
+		B108274D1FA1BA2200D961AD /* myKoloda.swift in Sources */ = {isa = PBXBuildFile; fileRef = B108274C1FA1BA2200D961AD /* myKoloda.swift */; };
 		B10BAE3B1F464CEC0066875C /* GoalCellCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10BAE3A1F464CEC0066875C /* GoalCellCollectionViewCell.swift */; };
 		B10BAE3D1F464FE00066875C /* RaisedViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10BAE3C1F464FE00066875C /* RaisedViewCell.swift */; };
 		B10BAE3F1F4650280066875C /* DaysViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10BAE3E1F4650280066875C /* DaysViewCell.swift */; };
@@ -35,6 +39,8 @@
 		B12C191B1F3370BA003B5370 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B12C191A1F3370BA003B5370 /* GoogleService-Info.plist */; };
 		B16924331F344DBA00B9973C /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16924321F344DBA00B9973C /* UserProfileViewController.swift */; };
 		B16924351F344E9C00B9973C /* CustomUserNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16924341F344E9C00B9973C /* CustomUserNavViewController.swift */; };
+		B174AB911FE9C5D0006F650F /* DjangoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B174AB901FE9C5D0006F650F /* DjangoManager.swift */; };
+		B1B187A11FDDB5EA008CA064 /* ColumnHeaderReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B187A01FDDB5EA008CA064 /* ColumnHeaderReusableView.swift */; };
 		B3BA5F93B2F678E86F714B82 /* Pods_CauseFeedProto2Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA3E07B5B56C6258DB55B5D1 /* Pods_CauseFeedProto2Tests.framework */; };
 /* End PBXBuildFile section */
 
@@ -63,6 +69,10 @@
 		965BFD215CA57A294889D290 /* Pods-CauseFeedProto2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CauseFeedProto2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CauseFeedProto2/Pods-CauseFeedProto2.debug.xcconfig"; sourceTree = "<group>"; };
 		9A81A923E5B910A2646432AB /* Pods-CauseFeedProto2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CauseFeedProto2.release.xcconfig"; path = "Pods/Target Support Files/Pods-CauseFeedProto2/Pods-CauseFeedProto2.release.xcconfig"; sourceTree = "<group>"; };
 		B1048F481F87F75000C1BEDD /* RestAPIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestAPIManager.swift; sourceTree = "<group>"; };
+		B105F2851FB4A444009B7E8E /* OverlayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OverlayView.xib; sourceTree = "<group>"; };
+		B105F2871FB51767009B7E8E /* myOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = myOverlayView.swift; sourceTree = "<group>"; };
+		B10827481FA1820A00D961AD /* FirebaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
+		B108274C1FA1BA2200D961AD /* myKoloda.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = myKoloda.swift; sourceTree = "<group>"; };
 		B10BAE3A1F464CEC0066875C /* GoalCellCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalCellCollectionViewCell.swift; sourceTree = "<group>"; };
 		B10BAE3C1F464FE00066875C /* RaisedViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RaisedViewCell.swift; sourceTree = "<group>"; };
 		B10BAE3E1F4650280066875C /* DaysViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DaysViewCell.swift; sourceTree = "<group>"; };
@@ -95,6 +105,8 @@
 		B12C191C1F3404BB003B5370 /* CauseFeedProto2.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CauseFeedProto2.entitlements; sourceTree = "<group>"; };
 		B16924321F344DBA00B9973C /* UserProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		B16924341F344E9C00B9973C /* CustomUserNavViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomUserNavViewController.swift; sourceTree = "<group>"; };
+		B174AB901FE9C5D0006F650F /* DjangoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DjangoManager.swift; sourceTree = "<group>"; };
+		B1B187A01FDDB5EA008CA064 /* ColumnHeaderReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColumnHeaderReusableView.swift; sourceTree = "<group>"; };
 		BA3E07B5B56C6258DB55B5D1 /* Pods_CauseFeedProto2Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CauseFeedProto2Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFD65D2CA2CDFF78F51C7E7C /* Pods-CauseFeedProto2UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CauseFeedProto2UITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CauseFeedProto2UITests/Pods-CauseFeedProto2UITests.debug.xcconfig"; sourceTree = "<group>"; };
 		E8FD7D637DB4017F7055CE2F /* Pods-CauseFeedProto2UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CauseFeedProto2UITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CauseFeedProto2UITests/Pods-CauseFeedProto2UITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -166,7 +178,12 @@
 			children = (
 				B12C191C1F3404BB003B5370 /* CauseFeedProto2.entitlements */,
 				B12C18DC1F326B38003B5370 /* AppDelegate.swift */,
+				B174AB901FE9C5D0006F650F /* DjangoManager.swift */,
+				B10827481FA1820A00D961AD /* FirebaseManager.swift */,
 				B12C18DE1F326B38003B5370 /* FirstViewController.swift */,
+				B105F2871FB51767009B7E8E /* myOverlayView.swift */,
+				B105F2851FB4A444009B7E8E /* OverlayView.xib */,
+				B108274C1FA1BA2200D961AD /* myKoloda.swift */,
 				B11E3D651F43C0C900004279 /* BasicTableRow.swift */,
 				B12C190C1F326CAF003B5370 /* LoginViewController.swift */,
 				B12C190D1F326CAF003B5370 /* MyScroll.swift */,
@@ -181,6 +198,7 @@
 				B12C18E21F326B39003B5370 /* Main.storyboard */,
 				B116AA3D1F9854C200FC11E3 /* CausePageViewViewController.swift */,
 				B11E3D631F43961D00004279 /* typicalViewCell.swift */,
+				B1B187A01FDDB5EA008CA064 /* ColumnHeaderReusableView.swift */,
 				B10BAE3A1F464CEC0066875C /* GoalCellCollectionViewCell.swift */,
 				B10BAE3C1F464FE00066875C /* RaisedViewCell.swift */,
 				B10BAE3E1F4650280066875C /* DaysViewCell.swift */,
@@ -350,6 +368,7 @@
 			files = (
 				B12C18E91F326B39003B5370 /* LaunchScreen.storyboard in Resources */,
 				B12C191B1F3370BA003B5370 /* GoogleService-Info.plist in Resources */,
+				B105F2861FB4A444009B7E8E /* OverlayView.xib in Resources */,
 				B12C18E61F326B39003B5370 /* Assets.xcassets in Resources */,
 				B12C18E41F326B39003B5370 /* Main.storyboard in Resources */,
 			);
@@ -523,11 +542,16 @@
 				B12C18E11F326B38003B5370 /* SecondViewController.swift in Sources */,
 				B1048F491F87F75000C1BEDD /* RestAPIManager.swift in Sources */,
 				B116AA3E1F9854C200FC11E3 /* CausePageViewViewController.swift in Sources */,
+				B10827491FA1820A00D961AD /* FirebaseManager.swift in Sources */,
+				B174AB911FE9C5D0006F650F /* DjangoManager.swift in Sources */,
 				B12C19141F326CAF003B5370 /* SignInViewController.swift in Sources */,
 				B12C18DD1F326B38003B5370 /* AppDelegate.swift in Sources */,
 				B11E3D661F43C0C900004279 /* BasicTableRow.swift in Sources */,
 				B10BAE3F1F4650280066875C /* DaysViewCell.swift in Sources */,
+				B1B187A11FDDB5EA008CA064 /* ColumnHeaderReusableView.swift in Sources */,
 				B12C19171F326CAF003B5370 /* XfadeSegue.swift in Sources */,
+				B108274D1FA1BA2200D961AD /* myKoloda.swift in Sources */,
+				B105F2881FB51767009B7E8E /* myOverlayView.swift in Sources */,
 				B10BAE3D1F464FE00066875C /* RaisedViewCell.swift in Sources */,
 				B10BAE3B1F464CEC0066875C /* GoalCellCollectionViewCell.swift in Sources */,
 				B11E3D641F43961D00004279 /* typicalViewCell.swift in Sources */,
@@ -632,7 +656,9 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				RESOURCES_TARGETED_DEVICE_FAMILY = "";
 				SDKROOT = iphoneos;
+				SKIP_INSTALL = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -675,7 +701,9 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				RESOURCES_TARGETED_DEVICE_FAMILY = "";
 				SDKROOT = iphoneos;
+				SKIP_INSTALL = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};

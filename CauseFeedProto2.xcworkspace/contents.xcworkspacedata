@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:FirebaseManagerCopy.swift">
+   </FileRef>
+   <FileRef
       location = "group:CauseFeedProto2.xcodeproj">
    </FileRef>
    <FileRef
