@@ -54,7 +54,7 @@ extension String{
 			return self
 		}
 		
-		let range = NSMakeRange(0, self.characters.count)
+		let range = NSMakeRange(0, self.count)
 		let trimmedString = testRegEx?.stringByReplacingMatches(in: self, options: .reportProgress, range: range, withTemplate: "")
 		return trimmedString!
 		

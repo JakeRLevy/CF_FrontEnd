@@ -41,23 +41,7 @@ enum SerializationErrors : Error{
 	}
 		
 }
-//Support object represents a supported cause
-//two dicts
-//String: int
-//String: Float
-/*class supportedCause: NSObject{
-	//var causeName:  [String: Int]
-	var data: [String: Float]
-	
-	required override init(){
-		super.init()
-		data = [String: Float]()
-	}
-	
-	public func getCauseID() -> {
-		causeName.
-	}
-}*/
+
 //Represents the data retrieved from a Cause profile endpoint
 /*{
 "id": 1,
@@ -263,18 +247,18 @@ class profileDataObject:  NSObject{
 }
 //class to manage the DJango API Calls
 class DjangoManager{
-	//method to load single user Profile by ID
 	//Pre: The current logged in User Profile exists within the database
 	//Post: The current User's profile has been downloaded
 	
-	public class func getUserProfileDataBy(ID: String, completion: @escaping(_ data: Data?, _ newResponse: URLResponse?,_ newError: Error?)  ->   () )  {  //throws???
+	//method to load single user Profile by ID
+	public class func getUserProfileDataBy(ID: String, completion: @escaping(_ data: Data?, _ newResponse: URLResponse?,_ newError: Error?)  -> ()) {
 		let requestURL = profileBaseURL + ID
 		
 		let loadedData =  URLSession.shared.dataTask(with: URL(string: requestURL)!) {(data, response, error) in
 			guard let data = data, error == nil else {
 				print(error!.localizedDescription)
-				return completion(nil, nil, error) //remove return statement after you add
-				//throw error
+				return completion(nil, nil, error)//return an error
+			
 			}
 			if let response = response as? HTTPURLResponse {
 				if response.statusCode != 200 {
@@ -282,27 +266,26 @@ class DjangoManager{
 						let userError = NSError(domain: requestURL,
 						                        code: response.statusCode,
 						                        userInfo: [NSLocalizedDescriptionKey: "User Doesn't Exist"])
-						 completion(nil, response, userError)
+						 completion(nil, response, userError)//return a User Doesn't Exist Error
 					}
 					else{
 						
 					let statusError = NSError(domain: requestURL,
 					                          code: response.statusCode,
 					                          userInfo: [NSLocalizedDescriptionKey: "HTTP status code has unexpected value."])
-					completion(nil, response, statusError)
+					completion(nil, response, statusError) //return unexpected HTTP status error
 					}
 				}
 				else{
-					//let parsedData = try? JSONSerialization.jsonObject(with: data) as! [String : Any]
+					//download went smoothly, run the completionHandler
 					completion(data, response, nil)
 				}
 			}
-				
-				
 		}
 		loadedData.resume()
-		
 	}
+	
+	
 	//method to load a single cause profile by ID
 	//GET REQUEST
 	//Pre: Cause with the given ID exists within the DataBase
@@ -361,7 +344,6 @@ class DjangoManager{
 					do{
 					
 						try singleCause = causeDataObject.init(json: data)
-						print("HERE???????")
 					} catch (let error) {
 						print(error)
 					}

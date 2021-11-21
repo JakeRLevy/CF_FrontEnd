@@ -193,26 +193,20 @@ class SignInViewController: UIViewController, UIScrollViewDelegate, UITextFieldD
 
         // Do any additional setup after loading the view.
     }
-
-	@objc func keyboardWillShow(_ notification:NSNotification){
-		
+	
+	
+  	@objc final func keyboardWillShow(_ notification:NSNotification){
 		var userInfo = notification.userInfo ?? [:]
 		let keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
-		//wlet screenSize = UIScreen.main.bounds
 		
 		let adjustment: CGFloat = ((keyboardFrame.size.height) - 20 )
 		self.SIScroll.contentInset.bottom += adjustment
 		self.SIScroll.scrollIndicatorInsets.bottom += adjustment
-		//
-		//self.automaticallyAdjustsScrollViewInsets
-		
+	
 	}
-	
-	@objc func keyboardWillHide(_ notification:NSNotification){
-		var userInfo = notification.userInfo ?? [:]
-		let keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
-		
-	
+	//changed the following declaration to dynamic for class purposes (8/3/2018)
+	//these needed to be exposed to the Objective C runtime to be able to perform this functionality
+  	dynamic func keyboardWillHide(_ notification:NSNotification){
 		self.SIScroll.contentInset  = UIEdgeInsets.zero
 		self.SIScroll.scrollIndicatorInsets = UIEdgeInsets.zero
 	}

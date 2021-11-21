@@ -351,64 +351,49 @@ class UserProfileViewController: UIViewController, UICollectionViewDelegate, UIC
 		if let currentUser = Auth.auth().currentUser { //if there is a current user
 			self.curUser = currentUser //set the local page variable curUser to the currentUser
 			var receivedData: [String: Any]?
+			
 			DjangoManager.getUserProfileDataBy(ID: (self.curUser?.displayName)!, completion: { (data, response, error) in
 			DispatchQueue.main.async() {
 				guard let data = data else{
-					print("HAHAHAH FUCK YOU ERROR")
+					print("Some Error Occurred during download")
 					return
 				}
 				do{
 					receivedData =  try? JSONSerialization.jsonObject(with: data) as! [String : Any]
 					print(receivedData!)
-					
 				self.currentUserProfile = try? profileDataObject(json: receivedData!)
 				} catch let error as SerializationErrors{
-					print("MISTAKE")
+					print("De-Serialization Error")
 					print(error.localizedDescription)
 				}
-				print("Current \((self.currentUserProfile?.userID!)!): SUCCESS")
 				self.numRows = self.currentUserProfile?.causeCount! ?? 0
-				print("Rows: ", self.numRows)
-				print("Swipe AMT = ", (self.currentUserProfile?.swipeDonation!)!)
-				print("Remaining: ",( self.currentUserProfile?.balance)!)
 				self.TotalCauses.text = String(format: "%4d",(self.currentUserProfile?.causeCount)!)
 				self.totalDonated.text = String(format: "$%.2f", (self.currentUserProfile?.totalDonated)!)
 				self.swipeAmt.text =  String(format: "$%.2f", (self.currentUserProfile?.swipeDonation!)!)
-				var feedTab = self.tabBarController?.viewControllers?[1] as! FirstViewController
+				let feedTab = self.tabBarController?.viewControllers?[1] as! FirstViewController
 				feedTab.SwipeAMT = (self.currentUserProfile?.swipeDonation)!
-				
 				self.Remaining.text = String(format: "$%.2f", (self.currentUserProfile?.balance!)!)
-
-				
 				for position in 0..<(self.numRows * 5){
 					if (position % 5  == 0){
 						self.testUserData.append("Cause")
-					}
-					else if (position % 5 == 1){
+					}else if (position % 5 == 1){
 						self.testUserData.append("Goal")
-					}
-					else if (position % 5 == 2){
+					}else if (position % 5 == 2){
 						self.testUserData.append("Raised")
-					}
-					else if (position % 5 == 3){
+					}else if (position % 5 == 3){
 						self.testUserData.append("Days")
-					}
-					else {
+					}else {
 						self.testUserData.append("Support")
 					}
-				}
-				//var currentDownloads: [causeDataObject]
+				}//var currentDownloads: [causeDataObject]
 				DjangoManager.getAllCausesFor(user: self.currentUserProfile!, completionHandler: { currentDownloads in
-					
 						self.downloadedCauses = currentDownloads
 						self.causeFlag = true
 						self.personalCauses.reloadData()
-					
-					
 				})
 				}
 			}
-			)
+			);
 			
 			self.userName.text = self.curUser?.displayName
 		}else{
